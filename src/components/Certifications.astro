@@ -1,0 +1,27 @@
+---
+import type { CertificationItem } from "../data/profile";
+export interface Props { items: CertificationItem[]; visitLabel?: string }
+const { items, visitLabel = 'Credential' } = Astro.props as Props;
+---
+<section id="certifications" class="mt-16">
+  <h2 class="text-2xl font-semibold">Certifications & Courses</h2>
+  <ul class="mt-4 grid gap-3 md:grid-cols-2">
+    {items.map((c) => (
+      <li class="card p-4 md:p-5">
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <div class="font-medium">{c.name}</div>
+            {c.issuer && <div class="text-sm text-zinc-600 dark:text-zinc-400">{c.issuer}</div>}
+            {c.date && <div class="text-sm text-zinc-600 dark:text-zinc-400">{c.date}</div>}
+          </div>
+          {c.url && (
+            <a href={c.url} target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md btn-gradient">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z"/></svg>
+              <span>{visitLabel}</span>
+            </a>
+          )}
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>

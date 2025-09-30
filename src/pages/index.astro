@@ -1,0 +1,200 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Experience from "../components/Experience.astro";
+import Education from "../components/Education.astro";
+import Certifications from "../components/Certifications.astro";
+import Projects from "../components/Projects.astro";
+import { experience, education, certifications, projects, techStack } from "../data/profile";
+const socials = [
+  { name: "GitHub", href: "https://github.com/moonlitrevery" },
+  { name: "LinkedIn", href: "https://www.linkedin.com/in/joaobruschi/" },
+  { name: "Instagram", href: "https://www.instagram.com/nyxvoiid/" },
+  { name: "Link hub", href: "https://bit.ly/moonlitrevery" },
+];
+const lang = Astro.url.searchParams.get('lang') === 'pt' ? 'pt' : 'en';
+const dict = {
+  en: {
+    about: 'About',
+    atAGlance: 'At a glance',
+    roleReqs: 'Skills aligned to my roles',
+    roleReqsDesc: 'Here are my professional skills aligned with Data Analyst and Data Scientist roles:',
+    dataAnalyst: 'Data Analyst',
+    dataScientist: 'Data Scientist',
+    techStack: 'Tech Stack',
+    projects: 'Projects',
+    contact: 'Contact',
+    heroDesc: 'Data Analyst & Data Scientist · Computer Science student @ UNISAGRADO · Specializing in Data Science and Cybersec Enthusiast',
+    aboutDesc: "Hi, I'm João. I'm a professional Data Analyst & Data Scientist with interests spanning modern analytics, machine learning, and computational neuroscience. I enjoy turning data into decisions, building robust pipelines, and communicating insights clearly.",
+    moreOnGitHub: 'More on GitHub:',
+    visitProvider: 'Visit provider',
+    view: 'View',
+    nav: { about: 'About', requirements: 'Skills', projects: 'Projects', contact: 'Contact' },
+    bullets: {
+      analystOverlap: [
+        'Advanced SQL: joins, windows, CTEs, performance tuning basics',
+        'Python for analysis and automation: Pandas, data cleaning, scripting',
+        'Power BI: data modeling (star schemas), measures (DAX), interactive dashboards',
+        'ETL/ELT: extracting from multiple sources, cleansing, and documenting lineage',
+        'Excel expert use: Power Query, PivotTables, advanced formulas, QA checks',
+        'Process automation: Power Automate and Python to reduce manual work',
+        'Stakeholder communication: KPIs, storytelling, and clear documentation'
+      ],
+      dataScientist: [
+        'ML with Python (scikit-learn), feature engineering, model evaluation',
+        'Deep learning where applicable (PyTorch or TensorFlow/Keras)',
+        'NLP/LLM fundamentals (text pipelines, embeddings, retrieval)',
+        'Experimentation & statistics (A/B testing, causal basics)',
+        'MLOps (packaging, Docker, MLflow/DVC, CI/CD, monitoring)',
+        'Data pipelines & orchestration (Airflow/Prefect)',
+        'Cloud ML services (AWS SageMaker, GCP Vertex AI, Azure ML)',
+        'Responsible AI, security, and privacy considerations',
+        'Communication of insights to technical & non-technical audiences'
+      ]
+    }
+  },
+  pt: {
+    about: 'Sobre',
+    atAGlance: 'Em resumo',
+    roleReqs: 'Competências alinhadas aos meus papéis',
+    roleReqsDesc: 'Aqui estão minhas competências profissionais alinhadas aos papéis de Analista e Cientista de Dados:',
+    dataAnalyst: 'Analista de Dados',
+    dataScientist: 'Cientista de Dados',
+    techStack: 'Tecnologias',
+    projects: 'Projetos',
+    contact: 'Contato',
+    heroDesc: 'Analista e Cientista de Dados · Estudante de Ciência da Computação @ UNISAGRADO · Especialização em Ciência de Dados e Entusiasta de Cibersegurança',
+    aboutDesc: 'Olá, eu sou o João. Sou Analista e Cientista de Dados com interesses em analytics moderno, machine learning e neurociência computacional. Gosto de transformar dados em decisões, construir pipelines robustos e comunicar insights com clareza.',
+    moreOnGitHub: 'Mais no GitHub:',
+    visitProvider: 'Visitar provedor',
+    view: 'Ver',
+    nav: { about: 'Sobre', requirements: 'Competências', projects: 'Projetos', contact: 'Contato' },
+    bullets: {
+      analystOverlap: [
+        'SQL avançado: joins, janelas, CTEs, noções de performance',
+        'Python para análise e automação: Pandas, limpeza de dados, scripts',
+        'Power BI: modelagem (estrela), medidas (DAX), dashboards interativos',
+        'ETL/ELT: extração de múltiplas fontes, tratamento e documentação de linhagem',
+        'Excel avançado: Power Query, Tabelas Dinâmicas, fórmulas, qualidade de dados',
+        'Automação de processos: Power Automate e Python para reduzir trabalho manual',
+        'Comunicação com stakeholders: KPIs, storytelling e documentação clara'
+      ],
+      dataScientist: [
+        'ML com Python (scikit-learn), engenharia de atributos e avaliação de modelos',
+        'Deep learning quando aplicável (PyTorch ou TensorFlow/Keras)',
+        'Fundamentos de NLP/LLM (pipelines de texto, embeddings, retrieval)',
+        'Experimentação e estatística (testes A/B, noções causais)',
+        'MLOps (empacotamento, Docker, MLflow/DVC, CI/CD, monitoramento)',
+        'Pipelines e orquestração de dados (Airflow/Prefect)',
+        'Serviços de ML em nuvem (AWS SageMaker, GCP Vertex AI, Azure ML)',
+        'IA responsável, segurança e privacidade',
+        'Comunicação de insights para públicos técnicos e não técnicos'
+      ]
+    }
+  }
+} as const;
+const t = (k) => dict[lang][k];
+---
+<BaseLayout lang={lang} navLabels={{ about: t('nav').about, requirements: t('nav').requirements, projects: t('nav').projects, contact: t('nav').contact }}>
+  <section class="mt-6 md:mt-10 grid gap-6 md:grid-cols-3 items-center">
+    <div class="md:col-span-2">
+      <h1 class="text-3xl md:text-5xl font-bold">João Vitor Bruschi</h1>
+      <p class="mt-3 text-lg text-zinc-700 dark:text-zinc-300">{t('heroDesc')}</p>
+      <div class="mt-4 flex flex-wrap gap-3 text-sm items-center">
+        <span class="inline-flex items-center gap-2 px-2 py-1 rounded-full bg-zinc-100 dark:bg-[#241f3b] text-zinc-700 dark:text-zinc-200">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.2L18 21l-6-3.8L6 21l1.5-7.8L2 9h7z"/></svg>
+          Open to opportunities
+        </span>
+        <a href={`${import.meta.env.BASE_URL}cv.pdf`} class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md btn-gradient shadow-sm" target="_blank" rel="noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm1 7H8V7h7v2z"/></svg>
+          Download CV
+        </a>
+        {socials.map((s) => (
+          <a href={s.href} class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md btn-gradient shadow-sm" target="_blank" rel="noreferrer">
+            {s.name}
+          </a>
+        ))}
+      </div>
+    </div>
+    <div class="justify-self-end">
+      <img src={`${import.meta.env.BASE_URL}me.jpg`} alt="João Vitor portrait" class="h-36 w-36 md:h-40 md:w-40 rounded-2xl object-cover ring-2 ring-transparent hover:ring-accent shadow-md" />
+    </div>
+  </section>
+
+  <section id="about" class="mt-12 grid gap-6 md:grid-cols-3">
+    <div class="md:col-span-2">
+      <h2 class="text-xl font-semibold flex items-center gap-2"><span class="text-gradient">{t('about')}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-3.33 0-10 1.67-10 5v1h20v-1c0-3.33-6.67-5-10-5z"/></svg>
+      </h2>
+      <p class="mt-2 text-zinc-700 dark:text-zinc-200">
+        {t('aboutDesc')}
+      </p>
+      <div class="mt-4">
+        <h3 class="font-medium flex items-center gap-2">
+          <span class="text-gradient">{t('techStack')}</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13H5v-2h14v2zm0 4H5v-2h14v2zM5 7h14v2H5V7z"/></svg>
+        </h3>
+        <ul class="mt-2 flex flex-wrap gap-2 text-xs text-zinc-700 dark:text-zinc-300">
+          {techStack.map((t) => <li class="px-2 py-1 rounded border border-transparent bg-zinc-100 dark:bg-zinc-800 hover:border-accent">{t}</li>)}
+        </ul>
+      </div>
+    </div>
+    <aside class="card">
+      <h3 class="font-medium flex items-center gap-2">
+        <span class="text-gradient">{t('atAGlance')}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
+      </h3>
+      <ul class="mt-2 text-sm space-y-2">
+        <li class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg> Bauru, Brazil</li>
+        <li class="flex items-center gap-2"><img src={`${import.meta.env.BASE_URL}icons/github.png`} alt="GitHub" class="h-4 w-4"/> GitHub: <a class="underline hover:text-accent" href="https://github.com/moonlitrevery" target="_blank">@moonlitrevery</a></li>
+        <li class="flex items-center gap-2"><img src={`${import.meta.env.BASE_URL}icons/linkedin.png`} alt="LinkedIn" class="h-4 w-4"/> LinkedIn: <a class="underline hover:text-accent" href="https://www.linkedin.com/in/joaobruschi/" target="_blank">joaobruschi</a></li>
+      </ul>
+    </aside>
+  </section>
+
+  <section id="requirements" class="mt-16">
+    <h2 class="text-2xl font-semibold"><span class="text-gradient">{t('roleReqs')}</span></h2>
+    <p class="mt-2 text-zinc-700 dark:text-zinc-300">{t('roleReqsDesc')}</p>
+
+    <div class="mt-6 grid gap-8 md:grid-cols-2">
+      <div>
+        <h3 class="text-lg font-semibold">{t('dataAnalyst')}</h3>
+        <ul class="mt-3 space-y-2 list-disc pl-5 text-zinc-800 dark:text-zinc-100">
+          {t('bullets').analystOverlap.map((b: string) => <li>{b}</li>)}
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold">{t('dataScientist')}</h3>
+        <ul class="mt-3 space-y-2 list-disc pl-5 text-zinc-800 dark:text-zinc-100">
+          {t('bullets').dataScientist.map((b: string) => <li>{b}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="my-12 h-px w-full bg-gradient-to-r from-transparent via-[#a855f7]/60 to-transparent"></div>
+
+  <Experience items={experience} lang={lang} />
+
+  <div class="my-12 h-px w-full bg-gradient-to-r from-transparent via-[#a855f7]/60 to-transparent"></div>
+
+  <Education items={education} lang={lang} />
+  <Certifications items={certifications} visitLabel={t('visitProvider')} />
+  <Projects items={projects} viewLabel={t('view')} />
+
+  <div class="my-12 h-px w-full bg-gradient-to-r from-transparent via-[#a855f7]/60 to-transparent"></div>
+
+  <section id="contact" class="mt-16">
+    <h2 class="text-2xl font-semibold">{t('contact')}</h2>
+    <div class="mt-3 flex flex-wrap gap-3">
+      <a class="inline-flex items-center gap-2 px-4 py-2 rounded-md btn-gradient shadow" href="https://www.linkedin.com/in/joaobruschi/" target="_blank" rel="noreferrer">
+        <img src="/icons/linkedin.png" alt="LinkedIn" class="h-4 w-4"/>
+        LinkedIn
+      </a>
+      <a class="inline-flex items-center gap-2 px-4 py-2 rounded-md btn-gradient shadow" href="mailto:joao.bruschi@outlook.com.br">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Email
+      </a>
+    </div>
+  </section>
+</BaseLayout>

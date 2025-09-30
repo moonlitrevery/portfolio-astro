@@ -1,0 +1,22 @@
+---
+// Language selector dropdown that switches ?lang= param (en/pt)
+---
+<select id="lang-select" class="px-2 py-1 rounded-md border border-zinc-200 bg-white text-sm dark:bg-zinc-900 dark:border-zinc-700">
+  <option value="en">EN</option>
+  <option value="pt">PT</option>
+</select>
+<script is:inline>
+  (function(){
+    const sel = document.getElementById('lang-select');
+    if (!sel) return;
+    const params = new URLSearchParams(window.location.search);
+    const current = params.get('lang') || 'en';
+    sel.value = current;
+    sel.addEventListener('change', () => {
+      const p = new URLSearchParams(window.location.search);
+      p.set('lang', sel.value);
+      const url = window.location.pathname + '?' + p.toString() + window.location.hash;
+      window.location.assign(url);
+    });
+  })();
+</script>

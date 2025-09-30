@@ -1,0 +1,21 @@
+---
+import type { EducationItem } from "../data/profile";
+export interface Props { items: EducationItem[]; lang?: string }
+const { items, lang = 'en' } = Astro.props as Props;
+---
+<section id="education" class="mt-16">
+  <h2 class="text-2xl font-semibold">Education</h2>
+  <div class="mt-6 grid gap-6 md:grid-cols-2">
+    {items.map((edu) => (
+      <article class="card">
+        <h3 class="text-lg font-semibold">{lang === 'pt' && edu.degreePt ? edu.degreePt : edu.degree}</h3>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400">{edu.institution}{edu.period ? ` · ${edu.period}` : ""}</p>
+        {(lang === 'pt' && edu.detailsPt) ? (
+          <p class="mt-2 text-zinc-700 dark:text-zinc-200">{edu.detailsPt}</p>
+        ) : (
+          edu.details && <p class="mt-2 text-zinc-700 dark:text-zinc-200">{edu.details}</p>
+        )}
+      </article>
+    ))}
+  </div>
+</section>

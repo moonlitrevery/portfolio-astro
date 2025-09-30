@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { scroll-behavior: smooth; }
+
+.prose ul { list-style: disc; padding-left: 1.25rem; }
+.prose ol { list-style: decimal; padding-left: 1.25rem; }
+
+/* Gradient helpers */
+.btn-gradient {
+  @apply bg-gradient-to-r from-[#9b5de5] via-[#a855f7] to-[#6d28d9] hover:from-[#a06ef2] hover:via-[#9333ea] hover:to-[#5b21b6] text-white;
+}
+text-gradient {
+  background: linear-gradient(90deg, #9b5de5, #a855f7, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.card {
+  @apply bg-white border rounded-lg p-5 dark:bg-[#151224] dark:border-[#241f3b] shadow-sm hover:shadow-md transition-shadow;
+}
