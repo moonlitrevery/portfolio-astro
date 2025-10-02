@@ -16,7 +16,7 @@ This is a personal portfolio built with Astro + Tailwind.
    ```bash
    npm run build && npm run preview
    ```
-
+   
 ## Links
 - GitHub: https://github.com/moonlitrevery
 - LinkedIn: https://www.linkedin.com/in/joaobruschi/
