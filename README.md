@@ -21,4 +21,4 @@ This is a personal portfolio built with Astro + Tailwind.
 - GitHub: https://github.com/moonlitrevery
 - LinkedIn: https://www.linkedin.com/in/joaobruschi/
 - Instagram: https://www.instagram.com/nyxvoiid/
-- Link hub: https://bit.ly/moonlitrevery
+- Link hub: moonlitrevery.github.io/portfolio-astro/
