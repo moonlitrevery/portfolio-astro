@@ -8,7 +8,7 @@
 
 **A modern, responsive portfolio website showcasing projects, experience, and skills as a Data Analyst & Data Scientist**
 
-[🌐 Live Demo](#) • [📧 Contact](mailto:joao.bruschi@outlook.com.br) • [💼 LinkedIn](https://www.linkedin.com/in/joaobruschi/)
+[🌐 Live Demo](https://bit.ly/mlrvportifolio) • [📧 Contact](mailto:joao.bruschi@outlook.com.br) • [💼 LinkedIn](https://www.linkedin.com/in/joaobruschi/)
 
 </div>
 
@@ -100,76 +100,6 @@ portfolio-astro/
 └── package.json
 ```
 
-## 🎨 Customization
-
-### Update Profile Information
-
-Edit `src/data/profile.ts` to update:
-- Work experience
-- Education
-- Certifications
-- Projects
-- Tech stack
-
-### Modify Content & Translations
-
-Edit `src/pages/index.astro` to update:
-- Hero section text
-- About section
-- Skills descriptions
-- All translations (PT/EN)
-
-### Change Theme Colors
-
-Modify `tailwind.config.cjs` to customize the color scheme:
-
-```javascript
-colors: {
-  accent: {
-    DEFAULT: '#7c3aed', // Main accent color
-    light: '#8b5cf6',
-    dark: '#6d28d9'
-  }
-}
-```
-
-### Update Resume
-
-Replace `public/cv.pdf` with your own resume file.
-
-## 📝 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-- `npm run format` - Format code with Prettier
-
-## 🌐 Deployment
-
-This portfolio can be deployed to various platforms:
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Import your repository on [Vercel](https://vercel.com)
-3. Deploy automatically
-
-### Netlify
-
-1. Push your code to GitHub
-2. Import your repository on [Netlify](https://netlify.com)
-3. Build command: `npm run build`
-4. Publish directory: `dist`
-
-### GitHub Pages
-
-1. Update `astro.config.mjs` with your repository name:
-   ```javascript
-   base: '/portfolio-astro/',
-   ```
-2. Build the project: `npm run build`
-3. Push the `dist` folder to the `gh-pages` branch
-
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
@@ -189,13 +119,3 @@ This project is open source and available under the [MIT License](LICENSE).
 - Built with [Astro](https://astro.build/)
 - Styled with [Tailwind CSS](https://tailwindcss.com/)
 - Icons from [Heroicons](https://heroicons.com/)
-
----
-
-<div align="center">
-
-**⭐ If you find this portfolio helpful, please consider giving it a star! ⭐**
-
-Made with ❤️ by João Vitor Bruschi
-
-</div>
