@@ -7,17 +7,57 @@
 .prose ul { list-style: disc; padding-left: 1.25rem; }
 .prose ol { list-style: decimal; padding-left: 1.25rem; }
 
+/* Animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
 /* Gradient helpers */
 .btn-gradient {
-  @apply bg-gradient-to-r from-[#9b5de5] via-[#a855f7] to-[#6d28d9] hover:from-[#a06ef2] hover:via-[#9333ea] hover:to-[#5b21b6] text-white;
+  @apply bg-gradient-to-r from-[#9b5de5] via-[#a855f7] to-[#6d28d9] hover:from-[#a06ef2] hover:via-[#9333ea] hover:to-[#5b21b6] text-white transition-all duration-200;
 }
-text-gradient {
+
+.text-gradient {
   background: linear-gradient(90deg, #9b5de5, #a855f7, #7c3aed);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
 .card {
-  @apply bg-white border rounded-lg p-5 dark:bg-[#151224] dark:border-[#241f3b] shadow-sm hover:shadow-md transition-shadow;
+  @apply bg-white border rounded-lg p-5 dark:bg-[#151224] dark:border-[#241f3b] shadow-sm hover:shadow-md transition-all duration-200;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-zinc-100 dark:bg-[#0f0b1a];
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 dark:bg-zinc-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-400 dark:bg-zinc-600;
 }

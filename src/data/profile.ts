@@ -27,6 +27,7 @@ export type ProjectItem = {
   displayName: string;
   repo?: string;
   description?: string;
+  descriptionPt?: string;
   tech?: string[];
   url: string;
   demo?: string;
@@ -146,10 +147,35 @@ export const techStack: string[] = [
 
 export const projects: ProjectItem[] = [
   {
+    displayName: "LibrasLive",
+    repo: "moonlitrevery/LibrasLive",
+    url: "https://github.com/moonlitrevery/LibrasLive",
+    description: "Real-time LIBRAS (Brazilian Sign Language) translation system that converts hand signs captured by webcam into text and audio. The system recognizes the LIBRAS alphabet using computer vision.",
+    descriptionPt: "Sistema de tradução em tempo real para LIBRAS (Língua Brasileira de Sinais) que converte sinais das mãos capturados pela webcam em texto e áudio. O sistema reconhece o alfabeto LIBRAS usando visão computacional.",
+    tech: ["Python", "OpenCV", "MediaPipe", "Machine Learning"]
+  },
+  {
+    displayName: "LyricsClassifier",
+    repo: "moonlitrevery/LyricsClassifier",
+    url: "https://github.com/moonlitrevery/LyricsClassifier",
+    description: "Complete NLP pipeline to classify song lyrics by genre, mood, or theme. Trained with TF-IDF + Naive Bayes (baseline).",
+    descriptionPt: "Pipeline completo de NLP para classificar letras de músicas por gênero, humor ou tema. Treinado com TF-IDF + Naive Bayes (baseline).",
+    tech: ["Python", "NLP", "scikit-learn", "TF-IDF", "Naive Bayes"]
+  },
+  {
+    displayName: "PokeTeam",
+    repo: "moonlitrevery/PokeTeam",
+    url: "https://github.com/moonlitrevery/PokeTeam",
+    description: "Interactive platform developed with Node.js and Astro, integrated with PokeAPI. PokeTeam allows users to consult the complete Pokédex and build their own Pokémon teams dynamically and interactively.",
+    descriptionPt: "Plataforma interativa desenvolvida com Node.js e Astro, integrada à PokeAPI. O PokeTeam permite aos usuários consultar a Pokédex completa e montar seus próprios times de Pokémon de forma dinâmica e interativa.",
+    tech: ["Astro", "Node.js", "JavaScript", "PokeAPI"]
+  },
+  {
     displayName: "ProteseSimples",
     repo: "moonlitrevery/ProteseSimples",
     url: "https://github.com/moonlitrevery/ProteseSimples",
     description: "Accessible prosthetics project: CAD assets and basic control logic for low-cost prosthesis prototypes.",
+    descriptionPt: "Projeto de próteses acessíveis: assets CAD e lógica de controle básica para protótipos de próteses de baixo custo.",
     tech: ["Arduino", "C++", "CAD"]
   },
   {
@@ -157,6 +183,7 @@ export const projects: ProjectItem[] = [
     repo: "moonlitrevery/Bionumerico",
     url: "https://github.com/moonlitrevery/Bionumerico",
     description: "Bio-inspired numerical experiments and analysis.",
+    descriptionPt: "Experimentos e análises numéricas bio-inspiradas.",
     tech: ["Python", "NumPy", "Pandas", "Matplotlib"]
   },
   {
@@ -164,6 +191,7 @@ export const projects: ProjectItem[] = [
     repo: "moonlitrevery/AGSsistant",
     url: "https://github.com/moonlitrevery/AGSsistant",
     description: "Assistant app and tooling experiments.",
+    descriptionPt: "Aplicativo assistente e experimentos de ferramentas.",
     tech: ["Dart", "Flutter", "C#"]
   }
 ];

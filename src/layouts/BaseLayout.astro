@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import ThemeToggle from "../components/ThemeToggle.astro";
+import LanguageSelector from "../components/LanguageSelector.astro";
 export interface Props {
   title?: string;
   description?: string;
@@ -8,6 +9,7 @@ export interface Props {
   navLabels?: { about: string; requirements: string; projects: string; contact: string };
 }
 const { title = "Portfolio - João Vitor", description = "Data Analyst & Data Scientist", lang = "en", navLabels = { about: 'About', requirements: 'Requirements', projects: 'Projects', contact: 'Contact' } } = Astro.props as Props;
+const footerText = lang === 'pt' ? 'Construído com Astro' : 'Built with Astro';
 ---
 <html lang={lang}>
   <head>
@@ -35,30 +37,73 @@ const { title = "Portfolio - João Vitor", description = "Data Analyst & Data Sc
     </script>
   </head>
   <body class="min-h-screen bg-zinc-50 text-zinc-900 antialiased dark:bg-[#0f0b1a] dark:text-zinc-100">
-    <header class="border-b bg-white dark:bg-[#0f0b1a]/70 dark:border-[#241f3b]">
+    <header class="sticky top-0 z-50 border-b bg-white/80 dark:bg-[#0f0b1a]/80 backdrop-blur-md dark:border-[#241f3b] shadow-sm">
       <nav class="mx-auto max-w-5xl flex items-center justify-between p-4">
-        <a href="/" class="font-semibold" aria-label="Home">
+        <a href="/" class="font-semibold hover:scale-105 transition-transform duration-200" aria-label="Home">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 text-accent" fill="currentColor">
             <path d="M3 3h2v18H3V3zm4 12h2v6H7v-6zm4-6h2v12h-2V9zm4-4h2v16h-2V5zm4 8h2v8h-2v-8z"/>
           </svg>
         </a>
-        <div class="flex items-center gap-3 text-sm">
-          <a href="/#about" class="hover:text-accent">{navLabels.about}</a>
-          <a href="/#requirements" class="hover:text-accent">{navLabels.requirements}</a>
-          <a href="/#projects" class="hover:text-accent">{navLabels.projects}</a>
-          <a href="/#contact" class="hover:text-accent">{navLabels.contact}</a>
+        <div class="flex items-center gap-4 text-sm">
+          <a href="/#about" class="hover:text-accent transition-colors duration-200 hidden md:inline">{navLabels.about}</a>
+          <a href="/#requirements" class="hover:text-accent transition-colors duration-200 hidden md:inline">{navLabels.requirements}</a>
+          <a href="/#projects" class="hover:text-accent transition-colors duration-200 hidden md:inline">{navLabels.projects}</a>
+          <a href="/#contact" class="hover:text-accent transition-colors duration-200 hidden md:inline">{navLabels.contact}</a>
+          <LanguageSelector />
           <ThemeToggle />
+          <button id="mobile-menu-btn" class="md:hidden p-2 rounded-md border border-zinc-200 hover:border-accent dark:border-zinc-700" aria-label="Toggle menu">
+            <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor">
+              <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+            </svg>
+            <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 hidden" fill="currentColor">
+              <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            </svg>
+          </button>
         </div>
       </nav>
+      <div id="mobile-menu" class="hidden md:hidden border-t dark:border-[#241f3b] bg-white dark:bg-[#0f0b1a]">
+        <div class="mx-auto max-w-5xl p-4 flex flex-col gap-3">
+          <a href="/#about" class="hover:text-accent transition-colors duration-200 py-2">{navLabels.about}</a>
+          <a href="/#requirements" class="hover:text-accent transition-colors duration-200 py-2">{navLabels.requirements}</a>
+          <a href="/#projects" class="hover:text-accent transition-colors duration-200 py-2">{navLabels.projects}</a>
+          <a href="/#contact" class="hover:text-accent transition-colors duration-200 py-2">{navLabels.contact}</a>
+        </div>
+      </div>
     </header>
+    <script is:inline>
+      (function(){
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        if (!btn || !menu || !menuIcon || !closeIcon) return;
+        
+        btn.addEventListener('click', () => {
+          const isHidden = menu.classList.contains('hidden');
+          menu.classList.toggle('hidden');
+          menuIcon.classList.toggle('hidden');
+          closeIcon.classList.toggle('hidden');
+        });
+        
+        // Close menu when clicking on a link
+        const links = menu.querySelectorAll('a');
+        links.forEach(link => {
+          link.addEventListener('click', () => {
+            menu.classList.add('hidden');
+            menuIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+          });
+        });
+      })();
+    </script>
 
     <main class="mx-auto max-w-5xl p-4 md:p-8">
       <slot />
     </main>
 
     <footer class="mt-16 border-t bg-white dark:bg-[#0f0b1a]/70 dark:border-[#241f3b]">
-      <div class="mx-auto max-w-5xl p-4 text-sm text-zinc-600 dark:text-zinc-400">
-        © {new Date().getFullYear()} João Vitor Bruschi — Built with Astro
+      <div class="mx-auto max-w-5xl p-4 text-sm text-zinc-600 dark:text-zinc-400 text-center">
+        © {new Date().getFullYear()} João Vitor Bruschi — {footerText}
       </div>
     </footer>
   </body>
