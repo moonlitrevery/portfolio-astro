@@ -7,12 +7,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        accent: {
-          DEFAULT: '#7c3aed', // purple-600
-          light: '#8b5cf6',   // purple-500
-          dark: '#6d28d9'     // purple-700
-        }
-      }
+        midnight: '#010120',
+        lavender: '#bdbbff',
+        // Illustration-only per DESIGN.md — use in decorative backgrounds, not UI chrome
+        'brand-magenta': '#ef2cc1',
+        'brand-orange': '#fc4c02',
+      },
+      fontFamily: {
+        display: ['Syne', 'Arial', 'sans-serif'],
+        mono: ['"IBM Plex Mono"', 'Georgia', 'monospace'],
+      },
+      maxWidth: {
+        content: '1200px',
+      },
+      boxShadow: {
+        elevate: '0 4px 10px rgba(1, 1, 32, 0.1)',
+      },
+      borderRadius: {
+        sharp: '4px',
+        comfy: '8px',
+      },
     }
   },
   plugins: []

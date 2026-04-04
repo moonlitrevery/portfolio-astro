@@ -1,8 +1,12 @@
 export type ExperienceItem = {
   title: string;
+  /** Optional Portuguese job title (e.g. with localized date formatting). */
+  titlePt?: string;
   company: string;
   location?: string;
+  /** Employment dates (shown below title, muted). */
   period?: string;
+  periodPt?: string;
   bullets: string[];
   bulletsPt?: string[];
 };
@@ -35,83 +39,87 @@ export type ProjectItem = {
 
 export const experience: ExperienceItem[] = [
   {
-    title: "Data Analysis Intern",
+    title: "Data Analyst Intern",
+    titlePt: "Estágio em Análise de Dados",
+    period: "Oct 2023–Feb 2024",
+    periodPt: "out 2023–fev 2024",
     company: "Paschoalotto",
     bullets: [
-      "Sending mass WhatsApp messages, increasing client communication efficiency by 85%.",
-      "Development and maintenance of Excel databases, ensuring organization and reliability of information.",
-      "Enhancement of analytical thinking, supporting data-driven strategic decision-making.",
-      "Maintenance and updating of user records in the company system, keeping error and inconsistency rates at 15%.",
-      "Assistance in creating R and SQL automations, streamlining internal processes and increasing productivity by 20%.",
-      "Support in the development of websites and applications using Python, HTML, CSS, and JavaScript."
+      "Engineered a governed mass WhatsApp outreach workflow (templates, lists, send controls) that raised client communication efficiency ~85%.",
+      "Built and maintained multi-table Excel operational databases with validation rules and refresh cadences that downstream teams treated as a source of truth.",
+      "Automated recurring R and SQL extracts and transforms, shaving ~20% off manual prep time for internal report consumers.",
+      "Owned high-volume user and account records in the core business system, tightening update discipline so measured error and inconsistency rates stayed near ~15%.",
+      "Shipped internal-facing web features with Python, HTML, CSS, and JavaScript, moving recurring requests off one-off spreadsheets into reusable tools."
     ],
     bulletsPt: [
-      "Envio de mensagens em massa via WhatsApp, aumentando em 85% a eficiência de comunicação com clientes.",
-      "Desenvolvimento e manutenção de bases em Excel, garantindo organização e confiabilidade das informações.",
-      "Aprimoramento do pensamento analítico, apoiando decisões estratégicas baseadas em dados.",
-      "Manutenção e atualização de cadastros no sistema, mantendo taxa de erros/inconsistências em 15%.",
-      "Apoio na criação de automações em R e SQL, otimizando processos e elevando a produtividade em 20%.",
-      "Suporte ao desenvolvimento de sites e aplicações com Python, HTML, CSS e JavaScript."
+      "Estruturei fluxo governado de WhatsApp em massa (modelos, listas, controles de envio), elevando ~85% a eficiência da comunicação com clientes.",
+      "Construí e mantive bases operacionais em Excel multiplanilha com regras de validação e cadência de atualização usadas como fonte confiável por outras áreas.",
+      "Automatizei extrações e transformações recorrentes em R e SQL, reduzindo ~20% o tempo manual de preparação para relatórios internos.",
+      "Assumi cadastros de alto volume no sistema corporativo, com disciplina de atualização que manteve taxas medidas de erro e inconsistência próximas de ~15%.",
+      "Entreguei melhorias em ferramentas web internas com Python, HTML, CSS e JavaScript, tirando demandas recorrentes de planilhas avulsas para fluxos reutilizáveis."
     ]
   },
   {
-    title: "Data Analysis | Power BI Apprentice",
+    title: "Data Analysis (Power BI focused) Apprentice",
+    titlePt: "Aprendiz em Análise de Dados (foco Power BI)",
+    period: "Apr 2024–Jun 2024",
+    periodPt: "abr 2024–jun 2024",
     company: "Sicredi Centro Oeste Paulista",
     bullets: [
-      "Development of innovative and automated Power BI dashboards for clear and effective insights.",
-      "Analysis and modeling of data extracted from company databases, ensuring accuracy and relevance.",
-      "Maintenance of internal team controls using Excel and Power BI, improving monitoring efficiency by 40%.",
-      "Continuous support to internal departments with data-driven solutions.",
-      "Extraction/filtering of database information and creation of Python automations, increasing efficiency by 60%."
+      "Designed production-style Power BI dashboards on top of corporate SQL sources: DAX measures, drill hierarchies, and refresh-ready semantic layers.",
+      "Modeled database extracts (filters, grains, staging logic) so Power BI datasets aligned with finance and operations decision cycles.",
+      "Rebuilt internal control views in Excel and Power BI, improving monitoring and follow-up efficiency ~40%.",
+      "Authored Python scripts for scheduled pulls, cleaning, and handoffs into BI models, cutting ~60% of manual prep on owned pipelines.",
+      "Translated business KPI asks into documented field definitions, filters, and visuals stakeholders could audit line by line."
     ],
     bulletsPt: [
-      "Desenvolvimento de dashboards inovadores e automatizados no Power BI, garantindo comunicação clara de insights.",
-      "Análise e modelagem de dados de bancos corporativos, assegurando acurácia e relevância.",
-      "Manutenção de controles internos com Excel e Power BI, elevando a eficiência de acompanhamento em 40%.",
-      "Suporte contínuo às áreas internas com soluções orientadas por dados.",
-      "Extração/filtragem de informações e criação de automações em Python, aumentando a eficiência em 60%."
+      "Desenvolvi dashboards no Power BI sobre bases SQL corporativas: medidas DAX, hierarquias de drill e camadas semânticas prontas para refresh.",
+      "Modelei extrações (filtros, grão, staging) para que datasets no Power BI acompanhassem o ritmo de decisão de finanças e operações.",
+      "Reestruturei controles internos em Excel e Power BI, elevando ~40% a eficiência de acompanhamento.",
+      "Escrevi scripts Python para pulls agendados, limpeza e handoff para modelos de BI, eliminando ~60% do prep manual nos pipelines sob minha responsabilidade.",
+      "Traduzi pedidos de KPI em definições de campos, filtros e visuais documentados, auditáveis linha a linha pelas áreas de negócio."
     ]
   },
   {
-    title: "Strategic Planning | Power BI Assistant",
+    title: "Data Analysis and Strategic Planning (Power BI focused) Assistant",
+    titlePt: "Assistente em Análise de Dados e Planejamento Estratégico (foco Power BI)",
+    period: "Jul 2024–Jul 2025",
+    periodPt: "jul 2024–jul 2025",
     company: "Sicredi Centro Oeste Paulista",
     bullets: [
-      "Data extraction and cleansing from multiple sources, ensuring consistency and reliability.",
-      "Creation and maintenance of Power BI reports and dashboards for performance monitoring.",
-      "Support in data modeling and database organization for analysis.",
-      "Assisting business areas in interpreting information and visualizing scenarios.",
-      "Support in strategic planning through analyses and reports for internal projects.",
-      "Engagement in continuous improvement initiatives focusing on BI process efficiency and innovation."
+      "Built multi-source ETL-style pipelines (extract, cleanse, reconcile) that fed planning and performance datasets for leadership reviews.",
+      "Owned lifecycle of strategic Power BI reports: versioned datasets, documented lineage, and recurring views used in portfolio monitoring.",
+      "Co-designed dimensional naming and model patterns so teams reused conformed logic instead of duplicating siloed spreadsheets.",
+      "Delivered variance and scenario analyses packaged for strategic-planning cycles, turning raw tables into decision-ready cohort and trend views.",
+      "Compressed BI cycle time through templated layouts and shared measures, reducing one-off rebuilds before each planning gate."
     ],
     bulletsPt: [
-      "Extração e tratamento de dados de múltiplas fontes, garantindo consistência e confiabilidade.",
-      "Criação e manutenção de relatórios e dashboards no Power BI para monitoramento de performance.",
-      "Suporte à modelagem de dados e organização de bases para análise.",
-      "Auxílio às áreas de negócio na interpretação das informações e visualização de cenários.",
-      "Apoio ao planejamento estratégico por meio de análises e relatórios.",
-      "Atuação em melhoria contínua com foco em eficiência e inovação em BI."
+      "Montei rotinas estilo ETL multi-fonte (extração, limpeza, reconciliação) alimentando bases de planejamento e performance para comitês de liderança.",
+      "Gerenciei ciclo de vida de relatórios estratégicos no Power BI: datasets versionados, linhagem documentada e visões recorrentes de acompanhamento de carteira.",
+      "Co-desenhei padrões de nomenclatura e modelagem dimensional para reutilizar lógica conformada em vez de planilhas isoladas.",
+      "Entreguei análises de variância e cenários empacotadas para ciclos de planejamento estratégico, de tabelas brutas a visões de coorte e tendência prontas para decisão.",
+      "Encurtiei o ciclo de BI com layouts modelo e medidas compartilhadas, reduzindo reconstruções ad hoc a cada etapa de planejamento."
     ]
   },
   {
-    title: "Data Analysis Assistant | Business Intelligence",
+    title: "Data Analysis and BI Assistant",
+    titlePt: "Assistente em Análise de Dados e BI",
+    period: "Jul 2025–Aug 2025",
+    periodPt: "jul 2025–ago 2025",
     company: "Sicredi Centro Oeste Paulista",
     bullets: [
-      "Data modeling for Power BI, designing optimized models for decision-making.",
-      "Development of interactive dashboards and reports with real-time insights.",
-      "Creation of KPIs and performance monitoring to identify trends and opportunities.",
-      "Automations with Power Automate, reducing development time for analyses by 75%–98%.",
-      "Support in strategic planning aligned to sustainable growth.",
-      "Transformation of raw data into actionable insights for better decisions.",
-      "Participation in projects fostering innovation and optimization of results."
+      "Architected Power BI semantic models (star-oriented relationships, DAX, refresh strategy) powering executive and branch-level scorecards.",
+      "Shipped interactive dashboards and near-real-time KPI suites that surfaced branch and portfolio performance without manual recompilation each cycle.",
+      "Defined KPI dictionaries and SQL-to-report validation checks so published metrics matched source-system grain and business rules.",
+      "Automated extract, notification, and distribution flows in Power Automate, cutting analytics build and wait time ~75–98% on standardized report families.",
+      "Fed strategic-planning forums with governed metric packs and repeatable templates, the same specification discipline later applied to ML experiment readouts and monitoring contracts."
     ],
     bulletsPt: [
-      "Modelagem de dados para Power BI, projetando modelos otimizados para decisão.",
-      "Desenvolvimento de dashboards e relatórios interativos, gerando insights em tempo real.",
-      "Criação de KPIs e monitoramento de performance para identificar tendências e oportunidades.",
-      "Automações com Power Automate, reduzindo tempo de desenvolvimento de análises em 75%–98%.",
-      "Suporte ao planejamento estratégico alinhado ao crescimento sustentável.",
-      "Transformação de dados brutos em insights acionáveis, elevando a assertividade das decisões.",
-      "Participação em projetos de inovação e otimização de resultados."
+      "Arquitetei modelos semânticos no Power BI (relacionamentos estrela, DAX, estratégia de refresh) para scorecards executivos e de agências.",
+      "Entreguei dashboards interativos e conjuntos de KPIs quase em tempo real para performance de agências e carteira, sem recompilação manual a cada ciclo.",
+      "Defini dicionários de KPI e checagens de validação SQL até relatório para que métricas publicadas respeitassem grão e regras de negócio dos sistemas de origem.",
+      "Automatizei extrações, notificações e distribuição no Power Automate, reduzindo ~75–98% o tempo de construção e fila de análises em famílias de relatório padronizadas.",
+      "Abasteci fóruns de planejamento estratégico com pacotes de métricas governadas e modelos repetíveis, o mesmo rigor de especificação aplicado depois a leituras de experimentos de ML e contratos de monitoramento."
     ]
   }
 ];

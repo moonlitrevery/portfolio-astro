@@ -1,22 +1,25 @@
 ---
 import type { CertificationItem } from "../data/profile";
-export interface Props { items: CertificationItem[]; visitLabel?: string; title?: string }
-const { items, visitLabel = 'Credential', title = 'Certifications & Courses' } = Astro.props as Props;
+export interface Props { items: CertificationItem[]; visitLabel?: string; title?: string; variant?: 'light' | 'dark' }
+const { items, visitLabel = 'Credential', title = 'Certifications & Courses', variant = 'light' } = Astro.props as Props;
+const isDark = variant === 'dark';
 ---
-<section id="certifications" class="mt-16">
-  <h2 class="text-2xl font-semibold"><span class="text-gradient">{title}</span></h2>
-  <ul class="mt-4 grid gap-3 md:grid-cols-2">
+<section id="certifications" class="mt-20 md:mt-28">
+  <h2 class:list={['heading-section font-display', isDark ? 'text-white' : 'text-black dark:text-white']}>
+    {title}
+  </h2>
+  <ul class="mt-6 grid gap-3 md:grid-cols-2">
     {items.map((c) => (
-      <li class="card p-4 md:p-5 group hover:border-accent/50 transition-all duration-200">
+      <li class:list={[isDark ? 'card-research' : 'card', 'p-4 md:p-6']}>
         <div class="flex items-center justify-between gap-3">
-          <div class="flex-1">
-            <div class="font-medium text-gradient">{c.name}</div>
-            {c.issuer && <div class="text-sm text-zinc-600 dark:text-zinc-400 mt-1">{c.issuer}</div>}
-            {c.date && <div class="text-sm text-zinc-600 dark:text-zinc-400">{c.date}</div>}
+          <div class="min-w-0 flex-1">
+            <div class:list={['text-[1.375rem] font-medium leading-tight font-display', isDark ? 'text-white' : 'text-black dark:text-white']} style="letter-spacing: -0.22px;">{c.name}</div>
+            {c.issuer && <div class:list={['mt-1 caption', isDark ? 'text-white/60' : 'text-black/60 dark:text-white/60']}>{c.issuer}</div>}
+            {c.date && <div class:list={['caption', isDark ? 'text-white/60' : 'text-black/60 dark:text-white/60']}>{c.date}</div>}
           </div>
           {c.url && (
-            <a href={c.url} target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md btn-gradient hover:shadow-md transition-all duration-200 flex-shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z"/></svg>
+            <a href={c.url} target="_blank" rel="noreferrer" class:list={[isDark ? 'btn-glass-dark flex-shrink-0' : 'btn-primary flex-shrink-0']}>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3z"/></svg>
               <span>{visitLabel}</span>
             </a>
           )}

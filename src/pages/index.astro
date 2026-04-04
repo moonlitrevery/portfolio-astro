@@ -5,11 +5,10 @@ import Education from "../components/Education.astro";
 import Certifications from "../components/Certifications.astro";
 import Projects from "../components/Projects.astro";
 import { experience, education, certifications, projects, techStack } from "../data/profile";
+const base = import.meta.env.BASE_URL;
 const socials = [
   { name: "GitHub", href: "https://github.com/moonlitrevery" },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/joaobruschi/" },
-  { name: "Instagram", href: "https://www.instagram.com/nyxvoiid/" },
-  { name: "Link hub", href: "https://bit.ly/moonlitrevery" },
 ];
 const lang = Astro.url.searchParams.get('lang') === 'pt' ? 'pt' : 'en';
 const dict = {
@@ -17,8 +16,8 @@ const dict = {
     about: 'About',
     atAGlance: 'At a glance',
     roleReqs: 'Skills aligned to my roles',
-    roleReqsDesc: 'Here are my professional skills aligned with Data Analyst and Data Scientist roles:',
-    dataAnalyst: 'Data Analyst',
+    roleReqsDesc: 'From analytics and BI into production ML: engineering, experimentation, and business impact.',
+    machineLearningEngineer: 'Machine Learning Engineer',
     dataScientist: 'Data Scientist',
     techStack: 'Tech Stack',
     projects: 'Projects',
@@ -35,26 +34,25 @@ const dict = {
     openToOpportunities: 'Open to opportunities',
     downloadCV: 'Download CV',
     location: 'Bauru, Brazil',
+    heroLabel: 'Introduction',
+    aboutEyebrow: 'Background',
+    stackEyebrow: 'Toolkit',
+    glanceEyebrow: 'Snapshot',
+    researchBand: 'Experience, education & certifications',
     bullets: {
-      analystOverlap: [
-        'Advanced SQL: joins, windows, CTEs, performance tuning basics',
-        'Python for analysis and automation: Pandas, data cleaning, scripting',
-        'Power BI: data modeling (star schemas), measures (DAX), interactive dashboards',
-        'ETL/ELT: extracting from multiple sources, cleansing, and documenting lineage',
-        'Excel expert use: Power Query, PivotTables, advanced formulas, QA checks',
-        'Process automation: Power Automate and Python to reduce manual work',
-        'Stakeholder communication: KPIs, storytelling, and clear documentation'
+      mle: [
+        'Architected a churn stack as three decoupled Python surfaces: inference (FastAPI), batch training, and drift monitoring, so each layer can be tested, versioned, and owned on independent release cadences, mirroring production separation of concerns.',
+        'Shipped a FastAPI scoring layer with Pydantic-validated I/O, explicit HTTP error semantics, and liveness/readiness endpoints sized for container rollouts and synchronous low-latency inference.',
+        'Ran every training job through one reproducible pipeline that logs parameters, metrics, and serialized artifacts to MLflow, making parallel hyperparameter and architecture trials diffable and promotion decisions auditable.',
+        'Instrumented serving-time drift: live feature distributions vs. a frozen reference window with thresholded alerts, catching covariate shift before lagging label-based metrics surface regressions.',
+        'Retired notebook only retrains with scripted train → evaluate → artifact export, pinned dependencies, and fixed directory contracts, repeatable enough to wire into CI and staged releases instead of copy-paste runs.'
       ],
       dataScientist: [
-        'ML with Python (scikit-learn), feature engineering, model evaluation',
-        'Deep learning where applicable (PyTorch or TensorFlow/Keras)',
-        'NLP/LLM fundamentals (text pipelines, embeddings, retrieval)',
-        'Experimentation & statistics (A/B testing, causal basics)',
-        'MLOps (packaging, Docker, MLflow/DVC, CI/CD, monitoring)',
-        'Data pipelines & orchestration (Airflow/Prefect)',
-        'Cloud ML services (AWS SageMaker, GCP Vertex AI, Azure ML)',
-        'Responsible AI, security, and privacy considerations',
-        'Communication of insights to technical & non-technical audiences'
+        'Converted Power BI KPIs and stakeholder narratives into crisp ML problem statements: primary metric, guardrails, business baseline, and definition of “churn,” before writing model code.',
+        'Engineered leakage-aware features with time-respecting train/validation splits on customer histories, optimizing precision/recall trade-offs for retention interventions rather than leaderboard accuracy.',
+        'Built training tables end-to-end in SQL/ETL: correct grain, join keys, and snapshot timestamps so offline datasets mirror what production joins would see, eliminating train/serve skew at the source.',
+        'Drove model selection with a written comparison matrix (baseline vs. tuned candidates), pairing ROC and PR and calibration plots with latency, complexity, and maintenance cost for each finalist.',
+        'Briefed technical and business partners on what the model optimizes, failure modes, score band actions, and which monitoring signals fire first, linking model output to decisions, not slide decks.'
       ]
     }
   },
@@ -62,8 +60,8 @@ const dict = {
     about: 'Sobre',
     atAGlance: 'Em resumo',
     roleReqs: 'Competências alinhadas aos meus papéis',
-    roleReqsDesc: 'Aqui estão minhas competências profissionais alinhadas aos papéis de Analista e Cientista de Dados:',
-    dataAnalyst: 'Analista de Dados',
+    roleReqsDesc: 'Da análise e BI ao ML em produção: engenharia, experimentação e impacto de negócio.',
+    machineLearningEngineer: 'Engenheiro de Machine Learning',
     dataScientist: 'Cientista de Dados',
     techStack: 'Tecnologias',
     projects: 'Projetos',
@@ -80,26 +78,25 @@ const dict = {
     openToOpportunities: 'Aberto a oportunidades',
     downloadCV: 'Baixar CV',
     location: 'Bauru, Brasil',
+    heroLabel: 'Introdução',
+    aboutEyebrow: 'Trajetória',
+    stackEyebrow: 'Ferramentas',
+    glanceEyebrow: 'Resumo',
+    researchBand: 'Experiência, formação e certificações',
     bullets: {
-      analystOverlap: [
-        'SQL avançado: joins, janelas, CTEs, noções de performance',
-        'Python para análise e automação: Pandas, limpeza de dados, scripts',
-        'Power BI: modelagem (estrela), medidas (DAX), dashboards interativos',
-        'ETL/ELT: extração de múltiplas fontes, tratamento e documentação de linhagem',
-        'Excel avançado: Power Query, Tabelas Dinâmicas, fórmulas, qualidade de dados',
-        'Automação de processos: Power Automate e Python para reduzir trabalho manual',
-        'Comunicação com stakeholders: KPIs, storytelling e documentação clara'
+      mle: [
+        'Arquitetei o churn em três superfícies Python desacopladas: inferência (FastAPI), treino batch e monitoramento de drift, cada uma testável, versionável e com fronteira de responsabilidade clara, no padrão de serviços em produção.',
+        'Entreguei camada de scoring em FastAPI com I/O validado em Pydantic, erros HTTP explícitos e endpoints de liveness/readiness, pensada para deploy em contêiner e inferência síncrona de baixa latência.',
+        'Centralizei o treino em um pipeline reprodutível que registra parâmetros, métricas e artefatos serializados no MLflow, permitindo comparar múltiplas tentativas de hiperparâmetro/arquitetura com linhagem auditável para promoção de modelo.',
+        'Instrumentei drift em serving: distribuições de features ao vivo vs. janela de referência congelada, com alertas por limiar, detectando covariate shift antes que métricas com label atrasado mostrem regressão.',
+        'Substituí retrains só em notebook por script train → evaluate → export de artefatos, dependências fixadas e layout de diretórios contratual, execução repetível para CI e releases por estágios, não cópia manual.'
       ],
       dataScientist: [
-        'ML com Python (scikit-learn), engenharia de atributos e avaliação de modelos',
-        'Deep learning quando aplicável (PyTorch ou TensorFlow/Keras)',
-        'Fundamentos de NLP/LLM (pipelines de texto, embeddings, retrieval)',
-        'Experimentação e estatística (testes A/B, noções causais)',
-        'MLOps (empacotamento, Docker, MLflow/DVC, CI/CD, monitoramento)',
-        'Pipelines e orquestração de dados (Airflow/Prefect)',
-        'Serviços de ML em nuvem (AWS SageMaker, GCP Vertex AI, Azure ML)',
-        'IA responsável, segurança e privacidade',
-        'Comunicação de insights para públicos técnicos e não técnicos'
+        'Converti KPIs do Power BI e requisitos de negócio em definição formal do problema de ML: métrica primária, guardrails, baseline de negócio e definição operacional de churn, antes de codar o modelo.',
+        'Construí features com consciência de vazamento e splits treino/validação que respeitam o tempo no histórico de clientes, priorizando trade-off precisão/recall para intervenções de retenção em vez de acurácia de leaderboard.',
+        'Montei tabelas de treino ponta a ponta em SQL/ETL: grão correto, chaves de join e timestamps de snapshot para que o offline espelhe o que produção enxergaria, eliminando train/serve skew na origem.',
+        'Conduzi escolha de modelo com matriz escrita baseline vs. candidatos afinados, com curvas de ROC e PR e calibração lado a lado com latência, complexidade e custo de manutenção por finalista.',
+        'Apresentei para times técnicos e de negócio o que o modelo otimiza, modos de falha, faixas de score → ação e quais sinais de monitoramento disparam primeiro, ligando output do modelo a decisão operacional, não só slides.'
       ]
     }
   }
@@ -107,128 +104,141 @@ const dict = {
 const t = (k) => dict[lang][k];
 ---
 <BaseLayout lang={lang} navLabels={{ about: t('nav').about, requirements: t('nav').requirements, projects: t('nav').projects, contact: t('nav').contact }}>
-  <section class="mt-6 md:mt-12 grid gap-6 md:grid-cols-3 items-center animate-fade-in">
-    <div class="md:col-span-2">
-      <div class="inline-block mb-2">
-        <span class="text-sm font-medium text-accent">👋 {lang === 'pt' ? 'Olá, eu sou' : 'Hello, I am'}</span>
-      </div>
-      <h1 class="text-4xl md:text-6xl font-bold bg-gradient-to-r from-zinc-900 via-purple-600 to-zinc-900 dark:from-zinc-100 dark:via-purple-400 dark:to-zinc-100 bg-clip-text text-transparent">João Vitor Bruschi</h1>
-      <p class="mt-4 text-lg md:text-xl text-zinc-700 dark:text-zinc-300 leading-relaxed">{t('heroDesc')}</p>
-      <div class="mt-6 flex flex-wrap gap-3 text-sm items-center">
-        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-[#241f3b] text-zinc-700 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-700">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4 text-accent" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.2L18 21l-6-3.8L6 21l1.5-7.8L2 9h7z"/></svg>
-          {t('openToOpportunities')}
-        </span>
-        <a href={`${import.meta.env.BASE_URL}cv.pdf`} class="inline-flex items-center gap-2 px-4 py-2 rounded-md btn-gradient shadow-sm hover:shadow-md transition-all duration-200 font-medium" target="_blank" rel="noreferrer">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm1 7H8V7h7v2z"/></svg>
-          {t('downloadCV')}
-        </a>
-        {socials.map((s) => (
-          <a href={s.href} class="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 shadow-sm hover:shadow transition-all duration-200 font-medium" target="_blank" rel="noreferrer">
-            {s.name}
+  <!-- Hero: light canvas + pastel atmosphere (decorative gradients only) -->
+  <section class="animate-fade-in relative overflow-hidden rounded-comfy border border-black/[0.08] dark:border-white/[0.12]">
+    <div class="hero-atmosphere" aria-hidden="true"></div>
+    <div class="relative z-10 grid items-center gap-8 p-6 md:grid-cols-3 md:gap-10 md:p-10">
+      <div class="md:col-span-2">
+        <p class="section-label mb-3 text-black/50 dark:text-white/45">{t('heroLabel')}</p>
+        <p class="body-large mb-2 text-black/70 dark:text-white/70">
+          {lang === 'pt' ? 'Olá, eu sou' : 'Hello, I am'}
+        </p>
+        <h1 class="font-display text-[clamp(1.75rem,6vw,4rem)] font-medium leading-[1.1] tracking-[-0.04em] text-black dark:text-white md:tracking-[-1.92px]">
+          João Vitor Bruschi
+        </h1>
+        <p class="body-large mt-5 max-w-2xl text-black/85 dark:text-white/85">
+          {t('heroDesc')}
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <span class="badge inline-flex items-center gap-2 !py-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-3.5 w-3.5 text-lavender" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4.2L18 21l-6-3.8L6 21l1.5-7.8L2 9h7z"/></svg>
+            {t('openToOpportunities')}
+          </span>
+          <a href={`${base}cv.pdf`} class="btn-primary" target="_blank" rel="noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm1 7H8V7h7v2z"/></svg>
+            {t('downloadCV')}
           </a>
-        ))}
+          {socials.map((s) => (
+            <a href={s.href} class="btn-outline" target="_blank" rel="noreferrer">{s.name}</a>
+          ))}
+        </div>
       </div>
-    </div>
-    <div class="justify-self-end md:justify-self-center">
-      <div class="relative group">
-        <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-300"></div>
-        <img src={`${import.meta.env.BASE_URL}me.jpg`} alt="João Vitor portrait" class="relative h-36 w-36 md:h-48 md:w-48 rounded-2xl object-cover ring-2 ring-transparent hover:ring-accent shadow-lg transition-transform duration-300 group-hover:scale-105" />
+      <div class="justify-self-center md:justify-self-end">
+        <div class="relative">
+          <div class="absolute -inset-2 rounded-comfy bg-gradient-to-br from-lavender/30 via-transparent to-brand-orange/10 blur-xl dark:from-lavender/10 dark:to-brand-magenta/5" aria-hidden="true"></div>
+          <img
+            src={`${base}me.jpg`}
+            alt="João Vitor portrait"
+            class="relative h-40 w-40 rounded-comfy border border-black/[0.08] object-cover shadow-elevate dark:border-white/[0.12] md:h-52 md:w-52"
+          />
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="about" class="mt-12 grid gap-6 md:grid-cols-3">
+  <section id="about" class="mt-20 grid gap-8 md:mt-28 md:grid-cols-3 md:gap-10">
     <div class="md:col-span-2">
-      <h2 class="text-xl font-semibold flex items-center gap-2"><span class="text-gradient">{t('about')}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-3.33 0-10 1.67-10 5v1h20v-1c0-3.33-6.67-5-10-5z"/></svg>
-      </h2>
-      <p class="mt-2 text-zinc-700 dark:text-zinc-200">
+      <p class="section-label mb-3 text-black/50 dark:text-white/45">{t('aboutEyebrow')}</p>
+      <h2 class="heading-section font-display text-black dark:text-white">{t('about')}</h2>
+      <p class="body-large mt-4 text-black/85 dark:text-white/85">
         {t('aboutDesc')}
       </p>
-      <div class="mt-4">
-        <h3 class="font-medium flex items-center gap-2">
-          <span class="text-gradient">{t('techStack')}</span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13H5v-2h14v2zm0 4H5v-2h14v2zM5 7h14v2H5V7z"/></svg>
-        </h3>
-        <ul class="mt-2 flex flex-wrap gap-2 text-xs text-zinc-700 dark:text-zinc-300">
-          {techStack.map((t) => <li class="px-2 py-1 rounded border border-transparent bg-zinc-100 dark:bg-zinc-800 hover:border-accent">{t}</li>)}
+      <div class="mt-10">
+        <p class="section-label mb-3 text-black/50 dark:text-white/45">{t('stackEyebrow')}</p>
+        <h3 class="heading-sub font-display text-black dark:text-white">{t('techStack')}</h3>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {techStack.map((tech) => <li class="badge">{tech}</li>)}
         </ul>
       </div>
     </div>
-    <aside class="card">
-      <h3 class="font-medium flex items-center gap-2">
-        <span class="text-gradient">{t('atAGlance')}</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 7a5 5 0 100 10 5 5 0 000-10z"/></svg>
-      </h3>
-      <ul class="mt-2 text-sm space-y-2">
-        <li class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-accent" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg> {t('location')}</li>
-        <li class="flex items-center gap-2"><img src={`${import.meta.env.BASE_URL}icons/github.png`} alt="GitHub" class="h-4 w-4"/> GitHub: <a class="underline hover:text-accent" href="https://github.com/moonlitrevery" target="_blank">@moonlitrevery</a></li>
-        <li class="flex items-center gap-2"><img src={`${import.meta.env.BASE_URL}icons/linkedin.png`} alt="LinkedIn" class="h-4 w-4"/> LinkedIn: <a class="underline hover:text-accent" href="https://www.linkedin.com/in/joaobruschi/" target="_blank">joaobruschi</a></li>
+    <aside class="card h-fit">
+      <p class="section-label mb-3 text-black/50 dark:text-white/45">{t('glanceEyebrow')}</p>
+      <h3 class="heading-sub font-display text-black dark:text-white">{t('atAGlance')}</h3>
+      <ul class="mt-4 space-y-3 caption text-black/80 dark:text-white/80">
+        <li class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-lavender" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          {t('location')}
+        </li>
+        <li class="flex items-center gap-2">
+          <img src={`${base}icons/github.png`} alt="" class="h-4 w-4 shrink-0" width="16" height="16" />
+          <span>GitHub: <a class="underline decoration-black/20 underline-offset-2 transition-colors hover:text-lavender dark:decoration-white/30" href="https://github.com/moonlitrevery" target="_blank" rel="noreferrer">@moonlitrevery</a></span>
+        </li>
+        <li class="flex items-center gap-2">
+          <img src={`${base}icons/linkedin.png`} alt="" class="h-4 w-4 shrink-0" width="16" height="16" />
+          <span>LinkedIn: <a class="underline decoration-black/20 underline-offset-2 transition-colors hover:text-lavender dark:decoration-white/30" href="https://www.linkedin.com/in/joaobruschi/" target="_blank" rel="noreferrer">joaobruschi</a></span>
+        </li>
       </ul>
     </aside>
   </section>
 
-  <section id="requirements" class="mt-16">
-    <h2 class="text-2xl font-semibold"><span class="text-gradient">{t('roleReqs')}</span></h2>
-    <p class="mt-2 text-zinc-700 dark:text-zinc-300">{t('roleReqsDesc')}</p>
+  <section id="requirements" class="mt-20 md:mt-28">
+    <p class="section-label mb-3 text-black/50 dark:text-white/45">{t('nav').requirements}</p>
+    <h2 class="heading-section font-display text-black dark:text-white">{t('roleReqs')}</h2>
+    <p class="body-large mt-4 max-w-3xl text-black/75 dark:text-white/75">{t('roleReqsDesc')}</p>
 
-    <div class="mt-6 grid gap-8 md:grid-cols-2">
+    <div class="mt-10 grid gap-10 md:grid-cols-2 md:gap-12">
       <div>
-        <h3 class="text-lg font-semibold">{t('dataAnalyst')}</h3>
-        <ul class="mt-3 space-y-2 list-disc pl-5 text-zinc-800 dark:text-zinc-100">
-          {t('bullets').analystOverlap.map((b: string) => <li>{b}</li>)}
+        <h3 class="heading-sub font-display text-black dark:text-white">{t('machineLearningEngineer')}</h3>
+        <ul class="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-black/90 dark:text-white/90" style="letter-spacing: -0.16px;">
+          {t('bullets').mle.map((b: string) => <li>{b}</li>)}
         </ul>
       </div>
-
       <div>
-        <h3 class="text-lg font-semibold">{t('dataScientist')}</h3>
-        <ul class="mt-3 space-y-2 list-disc pl-5 text-zinc-800 dark:text-zinc-100">
+        <h3 class="heading-sub font-display text-black dark:text-white">{t('dataScientist')}</h3>
+        <ul class="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-black/90 dark:text-white/90" style="letter-spacing: -0.16px;">
           {t('bullets').dataScientist.map((b: string) => <li>{b}</li>)}
         </ul>
       </div>
     </div>
   </section>
 
-  <div class="my-12 h-px w-full bg-gradient-to-r from-transparent via-[#a855f7]/60 to-transparent"></div>
+  <!-- Dark band: midnight blue research zone per DESIGN.md -->
+  <div class="relative left-1/2 my-20 w-screen -translate-x-1/2 bg-midnight px-4 py-20 text-white md:my-28 md:px-8 md:py-28">
+    <div class="mx-auto max-w-content">
+      <p class="section-label mb-12 text-white/45">{t('researchBand')}</p>
+      <Experience items={experience} lang={lang} title={t('experience')} variant="dark" />
+      <Education items={education} lang={lang} title={t('education')} variant="dark" />
+      <Certifications items={certifications} visitLabel={t('visitProvider')} title={t('certifications')} variant="dark" />
+    </div>
+  </div>
 
-  <Experience items={experience} lang={lang} title={t('experience')} />
-
-  <div class="my-12 h-px w-full bg-gradient-to-r from-transparent via-[#a855f7]/60 to-transparent"></div>
-
-  <Education items={education} lang={lang} title={t('education')} />
-  <Certifications items={certifications} visitLabel={t('visitProvider')} title={t('certifications')} />
   <Projects items={projects} viewLabel={t('view')} title={t('projects')} moreOnGitHub={t('moreOnGitHub')} lang={lang} />
 
-  <div class="my-12 h-px w-full bg-gradient-to-r from-transparent via-[#a855f7]/60 to-transparent"></div>
+  <div class="my-20 h-px w-full bg-black/[0.08] dark:bg-white/[0.12] md:my-28"></div>
 
-  <section id="contact" class="mt-16">
-    <h2 class="text-2xl font-semibold"><span class="text-gradient">{t('contact')}</span></h2>
-    <p class="mt-2 text-zinc-700 dark:text-zinc-300">
-      {lang === 'pt' 
+  <section id="contact" class="pb-8 md:pb-12">
+    <p class="section-label mb-3 text-black/50 dark:text-white/45">{t('contact')}</p>
+    <h2 class="heading-section font-display text-black dark:text-white">{t('contact')}</h2>
+    <p class="body-large mt-4 max-w-2xl text-black/75 dark:text-white/75">
+      {lang === 'pt'
         ? 'Estou sempre aberto a novas oportunidades e colaborações. Entre em contato comigo através dos canais abaixo:'
-        : 'I\'m always open to new opportunities and collaborations. Get in touch with me through the channels below:'}
+        : "I'm always open to new opportunities and collaborations. Get in touch with me through the channels below:"}
     </p>
-    <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-      <a class="card group hover:scale-105 transition-transform duration-200 flex flex-col items-center text-center p-6" href="https://www.linkedin.com/in/joaobruschi/" target="_blank" rel="noreferrer">
-        <img src="/icons/linkedin.png" alt="LinkedIn" class="h-8 w-8 mb-3"/>
-        <span class="font-medium">LinkedIn</span>
-        <span class="text-xs text-zinc-600 dark:text-zinc-400 mt-1">Professional Network</span>
+    <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <a class="card flex flex-col items-center p-6 text-center transition-transform duration-200 hover:-translate-y-0.5" href="https://www.linkedin.com/in/joaobruschi/" target="_blank" rel="noreferrer">
+        <img src={`${base}icons/linkedin.png`} alt="" class="mb-3 h-8 w-8" width="32" height="32" />
+        <span class="body-default font-medium text-black dark:text-white">LinkedIn</span>
+        <span class="caption mt-1 text-black/55 dark:text-white/50">Professional Network</span>
       </a>
-      <a class="card group hover:scale-105 transition-transform duration-200 flex flex-col items-center text-center p-6" href="https://github.com/moonlitrevery" target="_blank" rel="noreferrer">
-        <img src="/icons/github.png" alt="GitHub" class="h-8 w-8 mb-3"/>
-        <span class="font-medium">GitHub</span>
-        <span class="text-xs text-zinc-600 dark:text-zinc-400 mt-1">Code & Projects</span>
+      <a class="card flex flex-col items-center p-6 text-center transition-transform duration-200 hover:-translate-y-0.5" href="https://github.com/moonlitrevery" target="_blank" rel="noreferrer">
+        <img src={`${base}icons/github.png`} alt="" class="mb-3 h-8 w-8" width="32" height="32" />
+        <span class="body-default font-medium text-black dark:text-white">GitHub</span>
+        <span class="caption mt-1 text-black/55 dark:text-white/50">Code & Projects</span>
       </a>
-      <a class="card group hover:scale-105 transition-transform duration-200 flex flex-col items-center text-center p-6" href="mailto:joao.bruschi@outlook.com.br">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8 mb-3 text-accent" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        <span class="font-medium">Email</span>
-        <span class="text-xs text-zinc-600 dark:text-zinc-400 mt-1">joao.bruschi@outlook.com.br</span>
-      </a>
-      <a class="card group hover:scale-105 transition-transform duration-200 flex flex-col items-center text-center p-6" href="https://www.instagram.com/nyxvoiid/" target="_blank" rel="noreferrer">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8 mb-3 text-accent" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        <span class="font-medium">Instagram</span>
-        <span class="text-xs text-zinc-600 dark:text-zinc-400 mt-1">@nyxvoiid</span>
+      <a class="card flex flex-col items-center p-6 text-center transition-transform duration-200 hover:-translate-y-0.5" href="mailto:joao.bruschi@outlook.com.br">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="mb-3 h-8 w-8 text-lavender" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <span class="body-default font-medium text-black dark:text-white">Email</span>
+        <span class="caption mt-1 text-black/55 dark:text-white/50">joao.bruschi@outlook.com.br</span>
       </a>
     </div>
   </section>
