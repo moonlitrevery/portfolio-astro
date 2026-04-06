@@ -1,7 +1,7 @@
 ---
 import type { EducationItem } from "../data/profile";
-export interface Props { items: EducationItem[]; lang?: string; title?: string; variant?: 'light' | 'dark' }
-const { items, lang = 'en', title = 'Education', variant = 'light' } = Astro.props as Props;
+export interface Props { items: EducationItem[]; title?: string; variant?: 'light' | 'dark' }
+const { items, title = 'Education', variant = 'light' } = Astro.props as Props;
 const isDark = variant === 'dark';
 ---
 <section id="education" class:list={[isDark ? 'mt-20 md:mt-28' : 'mt-20 md:mt-28']}>
@@ -12,15 +12,13 @@ const isDark = variant === 'dark';
     {items.map((edu) => (
       <article class:list={[isDark ? 'card-research' : 'card']}>
         <h3 class:list={['text-[1.375rem] font-medium leading-tight font-display', isDark ? 'text-white' : 'text-black dark:text-white']} style="letter-spacing: -0.22px;">
-          {lang === 'pt' && edu.degreePt ? edu.degreePt : edu.degree}
+          {edu.degree}
         </h3>
         <p class:list={['mt-1 caption', isDark ? 'text-white/60' : 'text-black/60 dark:text-white/60']}>
           {edu.institution}{edu.period ? ` · ${edu.period}` : ""}
         </p>
-        {(lang === 'pt' && edu.detailsPt) ? (
-          <p class:list={['mt-3 text-sm leading-relaxed', isDark ? 'text-white/85' : 'text-black/80 dark:text-white/85']} style="letter-spacing: -0.16px;">{edu.detailsPt}</p>
-        ) : (
-          edu.details && <p class:list={['mt-3 text-sm leading-relaxed', isDark ? 'text-white/85' : 'text-black/80 dark:text-white/85']} style="letter-spacing: -0.16px;">{edu.details}</p>
+        {edu.details && (
+          <p class:list={['mt-3 text-sm leading-relaxed', isDark ? 'text-white/85' : 'text-black/80 dark:text-white/85']} style="letter-spacing: -0.16px;">{edu.details}</p>
         )}
       </article>
     ))}

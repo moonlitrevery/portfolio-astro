@@ -2,21 +2,23 @@
 import "../styles/global.css";
 import ThemeToggle from "../components/ThemeToggle.astro";
 import LanguageSelector from "../components/LanguageSelector.astro";
+import type { Translations } from "../i18n";
 export interface Props {
-  title?: string;
-  description?: string;
-  lang?: string;
-  navLabels?: { about: string; requirements: string; projects: string; contact: string };
+  lang: string;
+  copy: Translations;
+  /** This locale's home URL (trailing slash); used for logo + in-page nav anchors */
+  localePath: string;
+  urlEn: string;
+  urlPt: string;
 }
-const { title = "Portfolio - João Vitor", description = "Data Analyst & Data Scientist", lang = "en", navLabels = { about: 'About', requirements: 'Requirements', projects: 'Projects', contact: 'Contact' } } = Astro.props as Props;
-const footerText = lang === 'pt' ? 'Construído com Astro' : 'Built with Astro';
+const { lang, copy: t, localePath, urlEn, urlPt } = Astro.props as Props;
 const base = import.meta.env.BASE_URL;
 ---
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
+    <meta name="description" content={t.layout.metaDescription} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;500&display=swap" rel="stylesheet" />
@@ -24,7 +26,7 @@ const base = import.meta.env.BASE_URL;
     <link rel="mask-icon" href={`${base}favicon.svg`} color="#010120" />
     <meta name="theme-color" content="#010120" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <title>{title}</title>
+    <title>{t.layout.metaTitle}</title>
     <script is:inline>
       (function(){
         try {
@@ -42,19 +44,19 @@ const base = import.meta.env.BASE_URL;
   <body class="min-h-screen bg-white text-black antialiased dark:bg-midnight dark:text-white">
     <header class="sticky top-0 z-50 border-b border-black/[0.08] bg-white/90 backdrop-blur-md dark:border-white/[0.12] dark:bg-midnight/90">
       <nav class="mx-auto flex max-w-content items-center justify-between p-4 md:px-8">
-        <a href={base} class="rounded-sharp p-1 transition-opacity hover:opacity-70" aria-label="Home">
+        <a href={localePath} class="rounded-sharp p-1 transition-opacity hover:opacity-70" aria-label={t.layout.ariaHome}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 text-midnight dark:text-lavender" fill="currentColor" aria-hidden="true">
             <path d="M3 3h2v18H3V3zm4 12h2v6H7v-6zm4-6h2v12h-2V9zm4-4h2v16h-2V5zm4 8h2v8h-2v-8z"/>
           </svg>
         </a>
         <div class="flex items-center gap-3 text-base font-medium leading-[1.25] md:gap-4" style="letter-spacing: -0.16px;">
-          <a href={`${base}#about`} class="hidden transition-colors hover:text-lavender md:inline">{navLabels.about}</a>
-          <a href={`${base}#requirements`} class="hidden transition-colors hover:text-lavender md:inline">{navLabels.requirements}</a>
-          <a href={`${base}#projects`} class="hidden transition-colors hover:text-lavender md:inline">{navLabels.projects}</a>
-          <a href={`${base}#contact`} class="hidden transition-colors hover:text-lavender md:inline">{navLabels.contact}</a>
-          <LanguageSelector />
-          <ThemeToggle />
-          <button id="mobile-menu-btn" class="rounded-sharp border border-black/[0.08] p-2 transition-colors hover:border-midnight dark:border-white/[0.12] dark:hover:border-lavender md:hidden" aria-label="Toggle menu">
+          <a href={`${localePath}#about`} class="hidden transition-colors hover:text-lavender md:inline">{t.nav.about}</a>
+          <a href={`${localePath}#requirements`} class="hidden transition-colors hover:text-lavender md:inline">{t.nav.requirements}</a>
+          <a href={`${localePath}#projects`} class="hidden transition-colors hover:text-lavender md:inline">{t.nav.projects}</a>
+          <a href={`${localePath}#contact`} class="hidden transition-colors hover:text-lavender md:inline">{t.nav.contact}</a>
+          <LanguageSelector ariaLabel={t.layout.ariaLang} currentLang={lang} urlEn={urlEn} urlPt={urlPt} />
+          <ThemeToggle ariaLabel={t.layout.ariaTheme} />
+          <button id="mobile-menu-btn" class="rounded-sharp border border-black/[0.08] p-2 transition-colors hover:border-midnight dark:border-white/[0.12] dark:hover:border-lavender md:hidden" aria-label={t.layout.ariaMenu}>
             <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor">
               <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
             </svg>
@@ -66,10 +68,10 @@ const base = import.meta.env.BASE_URL;
       </nav>
       <div id="mobile-menu" class="hidden border-t border-black/[0.08] bg-white dark:border-white/[0.12] dark:bg-midnight md:hidden">
         <div class="mx-auto flex max-w-content flex-col gap-1 p-4">
-          <a href={`${base}#about`} class="body-default py-2 transition-colors hover:text-lavender">{navLabels.about}</a>
-          <a href={`${base}#requirements`} class="body-default py-2 transition-colors hover:text-lavender">{navLabels.requirements}</a>
-          <a href={`${base}#projects`} class="body-default py-2 transition-colors hover:text-lavender">{navLabels.projects}</a>
-          <a href={`${base}#contact`} class="body-default py-2 transition-colors hover:text-lavender">{navLabels.contact}</a>
+          <a href={`${localePath}#about`} class="body-default py-2 transition-colors hover:text-lavender">{t.nav.about}</a>
+          <a href={`${localePath}#requirements`} class="body-default py-2 transition-colors hover:text-lavender">{t.nav.requirements}</a>
+          <a href={`${localePath}#projects`} class="body-default py-2 transition-colors hover:text-lavender">{t.nav.projects}</a>
+          <a href={`${localePath}#contact`} class="body-default py-2 transition-colors hover:text-lavender">{t.nav.contact}</a>
         </div>
       </div>
     </header>
@@ -100,13 +102,11 @@ const base = import.meta.env.BASE_URL;
     </main>
 
     <footer class="border-t border-white/[0.12] bg-midnight text-white">
-      <div class="mx-auto max-w-content px-4 py-20 md:px-8 md:py-24">
-        <p class="select-none font-display text-[clamp(2.5rem,12vw,7rem)] font-medium leading-[0.95] tracking-[-0.06em] text-white/[0.12]">
-          João Vitor
-        </p>
-        <p class="caption mt-12 text-center text-white/50">
-          © {new Date().getFullYear()} João Vitor Bruschi — {footerText}
-        </p>
+      <div class="mx-auto max-w-content px-4 py-16 text-center md:px-8 md:py-20">
+        <div class="mx-auto max-w-2xl">
+          <p class="body-large text-white/90">{t.footer.line1}</p>
+          <p class="body-large mt-4 text-white/75">{t.footer.line2}</p>
+        </div>
       </div>
     </footer>
   </body>

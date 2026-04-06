@@ -1,0 +1,215 @@
+---
+import Experience from "../components/Experience.astro";
+import Education from "../components/Education.astro";
+import Certifications from "../components/Certifications.astro";
+import Projects from "../components/Projects.astro";
+import {
+  experienceRows,
+  certificationLinks,
+  projectSources,
+} from "../data/profile";
+import type { Translations } from "../i18n";
+
+export interface Props {
+  t: Translations;
+}
+
+const { t } = Astro.props as Props;
+const base = import.meta.env.BASE_URL;
+const socials = [
+  { nameKey: "github" as const, href: "https://github.com/moonlitrevery" },
+  { nameKey: "linkedin" as const, href: "https://www.linkedin.com/in/joaobruschi/" },
+];
+
+const experienceItems = experienceRows.map(({ id, company }) => {
+  const role = t.experience.roles[id];
+  return {
+    title: role.title,
+    period: role.period,
+    company,
+    bullets: [...role.bullets],
+  };
+});
+
+const educationItems = t.education.entries.map((e) => ({
+  degree: e.degree,
+  institution: e.institution,
+  period: e.period,
+  details: e.details,
+}));
+
+const certificationItems = certificationLinks.map(({ id, url }) => {
+  const c = t.certifications.items[id];
+  return { name: c.name, issuer: c.issuer, url };
+});
+
+const projectItems = projectSources.map((p) => {
+  const item = t.projects.items[p.id];
+  return {
+    displayName: item.title,
+    description: item.description,
+    url: p.url,
+    repo: p.repo,
+    tech: p.tech,
+  };
+});
+---
+<!-- Hero: light canvas + pastel atmosphere (decorative gradients only) -->
+<section class="animate-fade-in relative overflow-hidden rounded-comfy border border-black/[0.08] dark:border-white/[0.12]">
+  <div class="hero-atmosphere" aria-hidden="true"></div>
+  <div class="relative z-10 grid items-center gap-8 p-6 md:grid-cols-3 md:gap-10 md:p-10">
+    <div class="md:col-span-2">
+      <p class="section-label mb-3 text-black/50 dark:text-white/45">{t.hero.label}</p>
+      <p class="body-large mb-2 text-black/70 dark:text-white/70">
+        {t.hero.greeting}
+      </p>
+      <h1 class="font-display text-[clamp(1.75rem,6vw,4rem)] font-medium leading-[1.1] tracking-[-0.04em] text-black dark:text-white md:tracking-[-1.92px]">
+        {t.hero.nameDisplay}
+      </h1>
+      <p class="body-large mt-5 max-w-2xl text-black/85 dark:text-white/85">
+        {t.hero.subtitle}
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <span class="badge inline-flex items-center gap-2 !py-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-3.5 w-3.5 text-lavender" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4.2L18 21l-6-3.8L6 21l1.5-7.8L2 9h7z"/></svg>
+          {t.hero.openToOpportunities}
+        </span>
+        <a href={`${base}cv.pdf`} class="btn-primary" target="_blank" rel="noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm1 7H8V7h7v2z"/></svg>
+          {t.hero.downloadCv}
+        </a>
+        {socials.map((s) => (
+          <a href={s.href} class="btn-outline" target="_blank" rel="noreferrer">
+            {s.nameKey === "github" ? t.hero.socialGithub : t.hero.socialLinkedin}
+          </a>
+        ))}
+      </div>
+    </div>
+    <div class="justify-self-center md:justify-self-end">
+      <div class="relative">
+        <div class="absolute -inset-2 rounded-comfy bg-gradient-to-br from-lavender/30 via-transparent to-brand-orange/10 blur-xl dark:from-lavender/10 dark:to-brand-magenta/5" aria-hidden="true"></div>
+        <img
+          src={`${base}me.jpg`}
+          alt={t.hero.portraitAlt}
+          class="relative h-40 w-40 rounded-comfy border border-black/[0.08] object-cover shadow-elevate dark:border-white/[0.12] md:h-52 md:w-52"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="mt-20 grid gap-8 md:mt-28 md:grid-cols-3 md:gap-10">
+  <div class="md:col-span-2">
+    <p class="section-label mb-3 text-black/50 dark:text-white/45">{t.about.eyebrow}</p>
+    <h2 class="heading-section font-display text-black dark:text-white">{t.about.title}</h2>
+    <div class="mt-4 space-y-4 text-black/85 dark:text-white/85">
+      {t.about.paragraphs.map((paragraph) => (
+        <p class="body-large">{paragraph}</p>
+      ))}
+    </div>
+    <div class="mt-10">
+      <p class="section-label mb-3 text-black/50 dark:text-white/45">{t.about.stackEyebrow}</p>
+      <h3 class="heading-sub font-display text-black dark:text-white">{t.about.stackTitle}</h3>
+      {t.techStack.groups.map((group, gi) => (
+        <div class:list={[gi === 0 ? 'mt-4' : 'mt-6']}>
+          <p class="section-label text-black/50 dark:text-white/45">{group.label}</p>
+          <ul class="mt-2 flex flex-wrap gap-2">
+            {group.items.map((tech) => (
+              <li class="badge">{tech}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+  <aside class="card h-fit">
+    <p class="section-label mb-3 text-black/50 dark:text-white/45">{t.about.glanceEyebrow}</p>
+    <h3 class="heading-sub font-display text-black dark:text-white">{t.about.glanceTitle}</h3>
+    <ul class="mt-4 space-y-3 caption text-black/80 dark:text-white/80">
+      <li class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-lavender" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+        {t.about.location}
+      </li>
+      <li class="flex items-center gap-2">
+        <img src={`${base}icons/github.png`} alt="" class="h-4 w-4 shrink-0" width="16" height="16" />
+        <span>{t.about.githubLinePrefix}{' '}<a class="underline decoration-black/20 underline-offset-2 transition-colors hover:text-lavender dark:decoration-white/30" href="https://github.com/moonlitrevery" target="_blank" rel="noreferrer">@moonlitrevery</a></span>
+      </li>
+      <li class="flex items-center gap-2">
+        <img src={`${base}icons/linkedin.png`} alt="" class="h-4 w-4 shrink-0" width="16" height="16" />
+        <span>{t.about.linkedinLinePrefix}{' '}<a class="underline decoration-black/20 underline-offset-2 transition-colors hover:text-lavender dark:decoration-white/30" href="https://www.linkedin.com/in/joaobruschi/" target="_blank" rel="noreferrer">joaobruschi</a></span>
+      </li>
+    </ul>
+  </aside>
+</section>
+
+<section id="requirements" class="mt-20 md:mt-28">
+  <p class="section-label mb-3 text-black/50 dark:text-white/45">{t.nav.requirements}</p>
+  <h2 class="heading-section font-display text-black dark:text-white">{t.skills.title}</h2>
+  <p class="body-large mt-4 max-w-3xl text-black/75 dark:text-white/75">{t.skills.description}</p>
+
+  <h3 class="heading-sub font-display mt-10 text-black dark:text-white">{t.skills.keyHighlightsTitle}</h3>
+  <ul class="mt-4 max-w-3xl list-disc space-y-2 pl-5 text-sm leading-relaxed text-black/90 dark:text-white/90" style="letter-spacing: -0.16px;">
+    {t.skills.highlights.map((h) => (
+      <li>{h}</li>
+    ))}
+  </ul>
+
+  <div class="mt-10 grid gap-10 md:grid-cols-2 md:gap-12">
+    <div>
+      <h3 class="heading-sub font-display text-black dark:text-white">{t.skills.mleTitle}</h3>
+      <ul class="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-black/90 dark:text-white/90" style="letter-spacing: -0.16px;">
+        {t.skills.mleBullets.map((b) => <li>{b}</li>)}
+      </ul>
+    </div>
+    <div>
+      <h3 class="heading-sub font-display text-black dark:text-white">{t.skills.dsTitle}</h3>
+      <ul class="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-black/90 dark:text-white/90" style="letter-spacing: -0.16px;">
+        {t.skills.dsBullets.map((b) => <li>{b}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Dark band: midnight blue research zone per DESIGN.md -->
+<div class="relative left-1/2 my-20 w-screen -translate-x-1/2 bg-midnight px-4 py-20 text-white md:my-28 md:px-8 md:py-28">
+  <div class="mx-auto max-w-content">
+    <p class="section-label mb-12 text-white/45">{t.researchBand}</p>
+    <Experience items={experienceItems} title={t.experience.sectionTitle} variant="dark" />
+    <Education items={educationItems} title={t.education.sectionTitle} variant="dark" />
+    <Certifications items={certificationItems} visitLabel={t.certifications.visitProvider} title={t.certifications.sectionTitle} variant="dark" />
+  </div>
+</div>
+
+<Projects
+  items={projectItems}
+  viewLabel={t.projects.view}
+  title={t.projects.sectionTitle}
+  moreOnGitHub={t.projects.moreOnGitHub}
+/>
+
+<div class="my-20 h-px w-full bg-black/[0.08] dark:bg-white/[0.12] md:my-28"></div>
+
+<section id="contact" class="pb-8 md:pb-12">
+  <p class="section-label mb-3 text-black/50 dark:text-white/45">{t.contact.eyebrow}</p>
+  <h2 class="heading-section font-display text-black dark:text-white">{t.contact.title}</h2>
+  <p class="body-large mt-4 max-w-2xl text-black/75 dark:text-white/75">
+    {t.contact.lead}
+  </p>
+  <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <a class="card flex flex-col items-center p-6 text-center transition-transform duration-200 hover:-translate-y-0.5" href="https://www.linkedin.com/in/joaobruschi/" target="_blank" rel="noreferrer">
+      <img src={`${base}icons/linkedin.png`} alt="" class="mb-3 h-8 w-8" width="32" height="32" />
+      <span class="body-default font-medium text-black dark:text-white">{t.contact.linkedinTitle}</span>
+      <span class="caption mt-1 text-black/55 dark:text-white/50">{t.contact.linkedinSubtitle}</span>
+    </a>
+    <a class="card flex flex-col items-center p-6 text-center transition-transform duration-200 hover:-translate-y-0.5" href="https://github.com/moonlitrevery" target="_blank" rel="noreferrer">
+      <img src={`${base}icons/github.png`} alt="" class="mb-3 h-8 w-8" width="32" height="32" />
+      <span class="body-default font-medium text-black dark:text-white">{t.contact.githubTitle}</span>
+      <span class="caption mt-1 text-black/55 dark:text-white/50">{t.contact.githubSubtitle}</span>
+    </a>
+    <a class="card flex flex-col items-center p-6 text-center transition-transform duration-200 hover:-translate-y-0.5" href="mailto:joao.bruschi@outlook.com.br">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="mb-3 h-8 w-8 text-lavender" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      <span class="body-default font-medium text-black dark:text-white">{t.contact.emailTitle}</span>
+      <span class="caption mt-1 text-black/55 dark:text-white/50">{t.contact.emailSubtitle}</span>
+    </a>
+  </div>
+</section>

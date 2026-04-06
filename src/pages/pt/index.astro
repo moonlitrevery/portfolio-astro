@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HomePageContent from "../../components/HomePageContent.astro";
+import { getTranslations } from "../../i18n";
+import type { Lang } from "../../i18n";
+
+const base = import.meta.env.BASE_URL;
+const lang: Lang = "pt";
+const t = getTranslations(lang);
+const localePath = `${base}pt/`;
+const urlEn = base;
+const urlPt = localePath;
+---
+<BaseLayout lang={lang} copy={t} localePath={localePath} urlEn={urlEn} urlPt={urlPt}>
+  <HomePageContent t={t} />
+</BaseLayout>

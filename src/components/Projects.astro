@@ -1,7 +1,7 @@
 ---
 import type { ProjectItem } from "../data/profile";
-export interface Props { items: ProjectItem[]; viewLabel?: string; title?: string; moreOnGitHub?: string; lang?: string }
-const { items, viewLabel = 'View', title = 'Projects', moreOnGitHub = 'More on GitHub:', lang = 'en' } = Astro.props as Props;
+export interface Props { items: ProjectItem[]; viewLabel?: string; title?: string; moreOnGitHub?: string }
+const { items, viewLabel = 'View', title = 'Projects', moreOnGitHub = 'More on GitHub:' } = Astro.props as Props;
 ---
 <section id="projects" class="mt-20 md:mt-28">
   <h2 class="heading-section font-display text-black dark:text-white">{title}</h2>
@@ -14,7 +14,7 @@ const { items, viewLabel = 'View', title = 'Projects', moreOnGitHub = 'More on G
         </header>
         {p.description && (
           <p class="body-default mt-3 text-black/85 dark:text-white/85">
-            {(lang === 'pt' && p.descriptionPt) ? p.descriptionPt : p.description}
+            {p.description}
           </p>
         )}
         {p.tech && p.tech.length > 0 && (

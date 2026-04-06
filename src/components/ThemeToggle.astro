@@ -1,6 +1,8 @@
 ---
+export interface Props { ariaLabel?: string }
+const { ariaLabel = "Toggle theme" } = Astro.props as Props;
 ---
-<button id="theme-toggle" class="rounded-sharp border border-black/[0.08] p-2 transition-colors hover:border-midnight dark:border-white/[0.12] dark:hover:border-lavender" aria-label="Toggle theme">
+<button id="theme-toggle" class="rounded-sharp border border-black/[0.08] p-2 transition-colors hover:border-midnight dark:border-white/[0.12] dark:hover:border-lavender" aria-label={ariaLabel}>
   <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 hidden dark:block" fill="currentColor" aria-hidden="true">
     <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zM1 13h3v-2H1v2zm10-9h2V1h-2v3zm7.04 2.46l1.79-1.8-1.41-1.41-1.8 1.79 1.42 1.42zM17 13h3v-2h-3v2zm-5 8h2v-3h-2v3zm-7.66-3.34l1.41 1.41 1.8-1.79-1.42-1.42-1.79 1.8zM20.66 17.66l-1.41 1.41-1.8-1.79 1.42-1.42 1.79 1.8zM12 8a4 4 0 100 8 4 4 0 000-8z"/>
   </svg>
