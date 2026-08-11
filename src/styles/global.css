@@ -157,6 +157,38 @@
   background: rgba(255, 255, 255, 0.06);
 }
 
+.card-research-featured {
+  padding: 1.5rem 1.75rem;
+  border-color: rgba(189, 187, 255, 0.4);
+  background: rgba(189, 187, 255, 0.08);
+  box-shadow: inset 3px 0 0 0 #bdbbff;
+}
+.card-research-featured:hover {
+  border-color: rgba(189, 187, 255, 0.6);
+  background: rgba(189, 187, 255, 0.12);
+}
+
+.card-research-muted {
+  padding: 1rem 1.25rem;
+  opacity: 0.58;
+}
+.card-research-muted:hover {
+  opacity: 0.82;
+}
+
+.card-featured {
+  padding: 1.5rem 1.75rem;
+  border-color: rgba(189, 187, 255, 0.5);
+  box-shadow: 0 4px 10px rgba(1, 1, 32, 0.1), inset 3px 0 0 0 #bdbbff;
+}
+.card-muted {
+  padding: 1rem 1.25rem;
+  opacity: 0.62;
+}
+.card-muted:hover {
+  opacity: 0.88;
+}
+
 /* Display / section title helpers */
 .heading-section {
   font-size: 2.5rem;

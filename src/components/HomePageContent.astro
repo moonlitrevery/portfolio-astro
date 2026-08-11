@@ -174,7 +174,7 @@ const projectItems = projectSources.map((p) => {
 <div class="relative left-1/2 my-20 w-screen -translate-x-1/2 bg-midnight px-4 py-20 text-white md:my-28 md:px-8 md:py-28">
   <div class="mx-auto max-w-content">
     <p class="section-label mb-12 text-white/45">{t.researchBand}</p>
-    <Experience items={experienceItems} title={t.experience.sectionTitle} variant="dark" />
+    <Experience items={experienceItems} title={t.experience.sectionTitle} earlierLabel={t.experience.earlierLabel} variant="dark" />
     <Education items={educationItems} title={t.education.sectionTitle} variant="dark" />
     <Certifications items={certificationItems} visitLabel={t.certifications.visitProvider} title={t.certifications.sectionTitle} variant="dark" />
   </div>

@@ -18,7 +18,7 @@ export const pt = {
   },
   footer: {
     line1:
-      "Construído por João — Analista de Dados em transição para Engenharia de Machine Learning.",
+      "Construído por João - Engenheiro de Machine Learning.",
     line2: "Foco em sistemas de ML no mundo real, não só em modelos.",
   },
   hero: {
@@ -59,6 +59,8 @@ export const pt = {
         label: "Machine learning e dados",
         items: [
           "scikit-learn",
+          "PyTorch",
+          "OpenCV",
           "Pandas",
           "NumPy",
           "Feature engineering",
@@ -106,6 +108,7 @@ export const pt = {
   researchBand: "Experiência, formação e certificações",
   experience: {
     sectionTitle: "Experiência",
+    earlierLabel: "Anteriores",
     roles: {
       paschoalotto: {
         title: "Estágio em Análise de Dados",

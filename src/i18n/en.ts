@@ -16,7 +16,7 @@ export const en = {
   },
   footer: {
     line1:
-      "Built by João — Data Analyst transitioning into Machine Learning Engineering.",
+      "Built by João - Machine Learning Engineer.",
     line2: "Focused on real-world ML systems, not just models.",
   },
   hero: {
@@ -57,6 +57,8 @@ export const en = {
         label: "Machine Learning & Data",
         items: [
           "scikit-learn",
+          "PyTorch",
+          "OpenCV",
           "Pandas",
           "NumPy",
           "Feature Engineering",
@@ -104,6 +106,7 @@ export const en = {
   researchBand: "Experience, education & certifications",
   experience: {
     sectionTitle: "Experience",
+    earlierLabel: "Earlier",
     roles: {
       paschoalotto: {
         title: "Data Analyst Intern",

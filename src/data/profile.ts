@@ -52,12 +52,12 @@ export type ProjectItem = {
 };
 
 export const experienceRows: { id: ExperienceRowId; company: string }[] = [
-  { id: "paschoalotto", company: "Paschoalotto" },
-  { id: "sicrediApprentice", company: "Sicredi Centro Oeste Paulista" },
-  { id: "sicrediStrategic", company: "Sicredi Centro Oeste Paulista" },
-  { id: "sicrediBi", company: "Sicredi Centro Oeste Paulista" },
-  { id: "coteFacilJunior", company: "CoteFacil" },
   { id: "coteFacilMl", company: "CoteFacil" },
+  { id: "coteFacilJunior", company: "CoteFacil" },
+  { id: "sicrediBi", company: "Sicredi Centro Oeste Paulista" },
+  { id: "sicrediStrategic", company: "Sicredi Centro Oeste Paulista" },
+  { id: "sicrediApprentice", company: "Sicredi Centro Oeste Paulista" },
+  { id: "paschoalotto", company: "Paschoalotto" },
 ];
 
 export const certificationLinks: { id: CertificationId; url: string }[] = [
