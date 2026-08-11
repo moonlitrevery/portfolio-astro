@@ -52,20 +52,27 @@ export const pt = {
   techStack: {
     groups: [
       {
-        label: "Núcleo",
-        items: ["Python", "SQL", "FastAPI", "scikit-learn", "MLflow"],
+        label: "Linguagens e núcleo",
+        items: ["Python", "SQL", "C/C++", "Git", "Linux"],
       },
       {
-        label: "Dados e machine learning",
-        items: ["Pandas", "NumPy", "Feature engineering", "Model evaluation", "NLP"],
+        label: "Machine learning e dados",
+        items: [
+          "scikit-learn",
+          "Pandas",
+          "NumPy",
+          "Feature engineering",
+          "Model evaluation",
+          "NLP",
+        ],
       },
       {
         label: "MLOps e engenharia",
-        items: ["APIs", "Pipelines", "Experiment tracking", "Monitoramento", "Git"],
+        items: ["FastAPI", "MLflow", "REST APIs", "Data pipelines", "Monitoramento"],
       },
       {
         label: "Analytics e BI",
-        items: ["Power BI", "DAX", "Data modeling"],
+        items: ["Power BI", "DAX", "Data modeling", "ETL", "Excel"],
       },
     ],
   },
