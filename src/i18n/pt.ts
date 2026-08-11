@@ -148,6 +148,30 @@ export const pt = {
           "Entreguei pacotes de métricas governados para fóruns de planejamento, com o mesmo rigor de especificação de reviews de experimentos de ML e de monitoramento.",
         ],
       },
+      coteFacilJunior: {
+        title: "Engenheiro / Desenvolvedor de Software Júnior",
+        period: "abr 2026–jun 2026",
+        bullets: [
+          "Impacto: Tirei extração e reconhecimento de scripts avulsos para pipelines em nuvem repetíveis e modelos OCR em produção (CNN/CRNN + CTC).",
+          "Construí pipelines escaláveis de dados e automação em Python, AWS e Docker para extração, processamento e integração de sistemas.",
+          "Projetei e mantive frameworks em nuvem para extração, processamento e handoffs entre sistemas.",
+          "Implementei CI/CD e automação de infraestrutura para aplicações containerizadas e distribuídas.",
+          "Desenvolvi pipelines de OCR/ML (CNN, CRNN, CTC loss): geração de datasets, fine-tuning em dados reais, early stopping, LR scheduling e augmentation.",
+          "Atuei em iniciativas de escalabilidade, observabilidade e otimização de performance em sistemas data-driven.",
+        ],
+      },
+      coteFacilMl: {
+        title: "Engenheiro de Machine Learning / Engenheiro de Dados",
+        period: "jul 2026–ago 2026",
+        bullets: [
+          "Impacto: Entreguei sistemas de ML ponta a ponta—da ingestão e features ao deploy e monitoramento—com pipelines batch e APIs de inferência prontos para produção.",
+          "Fui responsável por sistemas de ML cobrindo ingestão, feature engineering, deploy de modelos e monitoramento.",
+          "Projetei pipelines batch escaláveis, APIs de inferência e automações com Python, AWS, Docker e FastAPI.",
+          "Construí e mantive serviços de ML com foco em reprodutibilidade, experiment tracking, observabilidade e prontidão para produção.",
+          "Desenvolvi e otimizei modelos de visão computacional e OCR: geração de dados, treino, fine-tuning e avaliação.",
+          "Colaborei com engenharia em confiabilidade, performance e escalabilidade em ambientes cloud.",
+        ],
+      },
     },
   },
   education: {

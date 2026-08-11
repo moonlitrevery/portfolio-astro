@@ -3,7 +3,9 @@ export type ExperienceRowId =
   | "paschoalotto"
   | "sicrediApprentice"
   | "sicrediStrategic"
-  | "sicrediBi";
+  | "sicrediBi"
+  | "coteFacilJunior"
+  | "coteFacilMl";
 
 export type CertificationId =
   | "dataSciencePath"
@@ -54,6 +56,8 @@ export const experienceRows: { id: ExperienceRowId; company: string }[] = [
   { id: "sicrediApprentice", company: "Sicredi Centro Oeste Paulista" },
   { id: "sicrediStrategic", company: "Sicredi Centro Oeste Paulista" },
   { id: "sicrediBi", company: "Sicredi Centro Oeste Paulista" },
+  { id: "coteFacilJunior", company: "CoteFacil" },
+  { id: "coteFacilMl", company: "CoteFacil" },
 ];
 
 export const certificationLinks: { id: CertificationId; url: string }[] = [

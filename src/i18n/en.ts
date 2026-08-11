@@ -146,6 +146,30 @@ export const en = {
           "Delivered governed metric packs to planning forums; same spec discipline as ML experiment readouts and monitoring.",
         ],
       },
+      coteFacilJunior: {
+        title: "Junior Software Engineer / Developer",
+        period: "Apr 2026–Jun 2026",
+        bullets: [
+          "Impact: Moved extraction and recognition off ad-hoc scripts into repeatable cloud pipelines and production OCR models (CNN/CRNN + CTC).",
+          "Built scalable data and automation pipelines in Python, AWS, and Docker for extraction, processing, and system integration.",
+          "Designed and maintained cloud frameworks for data extraction, processing, and cross-system handoffs.",
+          "Implemented CI/CD and infrastructure automation for containerized, distributed applications.",
+          "Developed OCR/ML pipelines (CNN, CRNN, CTC loss): dataset generation, fine-tuning on real data, early stopping, LR scheduling, and augmentation.",
+          "Partnered on scalability, observability, and performance work across data-driven systems.",
+        ],
+      },
+      coteFacilMl: {
+        title: "Machine Learning Engineer / Data Engineer",
+        period: "Jul 2026–Aug 2026",
+        bullets: [
+          "Impact: Delivered end-to-end ML systems—from ingestion and features to deployment and monitoring—with production-ready batch pipelines and inference APIs.",
+          "Owned ML systems across data ingestion, feature engineering, model deployment, and monitoring.",
+          "Designed scalable batch pipelines, inference APIs, and automation with Python, AWS, Docker, and FastAPI.",
+          "Built and maintained ML services focused on reproducibility, experiment tracking, observability, and production readiness.",
+          "Developed and optimized computer vision and OCR models: data generation, training, fine-tuning, and evaluation.",
+          "Collaborated with engineering on reliability, performance, and scalability in cloud environments.",
+        ],
+      },
     },
   },
   education: {
