@@ -198,7 +198,7 @@ export const pt = {
           "Sistema de machine learning ponta a ponta para predição de churn: pipeline de treino, serviço de inferência em FastAPI, experiment tracking no MLflow e monitoramento de data drift.",
       },
       dodocLens: {
-        title: "DodocLens (EM ANDAMENTO)",
+        title: "DodocLens",
         description:
           "Inteligência documental local-first para busca semântica em arquivos privados: OCR, chunking, embeddings on-device e similaridade de cosseno com sentence-transformers, sem APIs externas. Destaques: IA com privacidade (100% offline); backend FastAPI e app desktop Electron; pipeline ponta a ponta de busca semântica.",
       },

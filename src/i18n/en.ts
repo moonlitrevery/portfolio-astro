@@ -195,7 +195,7 @@ export const en = {
           "End-to-end machine learning system for churn prediction: training pipeline, FastAPI inference service, MLflow experiment tracking, and data drift monitoring.",
       },
       dodocLens: {
-        title: "DodocLens (IN PROGRESS)",
+        title: "DodocLens",
         description:
           "Local-first document intelligence for semantic search over private files: OCR, chunking, on-device embeddings, and cosine similarity with sentence-transformers; no external APIs. Highlights: privacy-preserving AI (fully offline); FastAPI backend plus Electron desktop app; end-to-end semantic search pipeline.",
       },
