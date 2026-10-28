@@ -30,6 +30,8 @@ export const en = {
     portraitAlt: "Portrait of João Vitor Bruschi",
     openToOpportunities: "Open to opportunities",
     downloadCv: "Download CV",
+    /** File in public/ that the Download CV button links to. */
+    cvFile: "cv-en.pdf",
     socialGithub: "GitHub",
     socialLinkedin: "LinkedIn",
   },
@@ -184,7 +186,7 @@ export const en = {
   },
   certifications: {
     sectionTitle: "Certifications & Courses",
-    visitProvider: "Visit provider",
+    viewCredential: "View credential",
     items: {
       dataSciencePath: { name: "Data Science Path", issuer: "Alura" },
       dataAnalyticsWarehousing: {
@@ -199,12 +201,23 @@ export const en = {
         name: "Conceptual Training in BI",
         issuer: "Tech6 Group",
       },
-      spaceApps2022: { name: "Space Apps 2022", issuer: "NASA" },
+    },
+  },
+  awards: {
+    sectionTitle: "Awards & events",
+    items: {
+      spaceApps2022: {
+        name: "Space Apps 2022",
+        issuer: "NASA",
+        note: "Participation",
+      },
     },
   },
   projects: {
     sectionTitle: "Projects",
     view: "View",
+    demo: "Demo",
+    screenshotAlt: "Screenshot of",
     moreOnGitHub: "More on GitHub:",
     items: {
       churn: {
@@ -217,20 +230,15 @@ export const en = {
         description:
           "Local-first document intelligence for semantic search over private files: OCR, chunking, on-device embeddings, and cosine similarity with sentence-transformers; no external APIs. Highlights: privacy-preserving AI (fully offline); FastAPI backend plus Electron desktop app; end-to-end semantic search pipeline.",
       },
-      lyricsClassifier: {
-        title: "LyricsClassifier",
-        description:
-          "NLP pipeline for classifying song lyrics using vectorization and probabilistic models, focused on preprocessing and feature extraction.",
-      },
       librasLive: {
         title: "LibrasLive",
         description:
           "Real-time system recognizing Brazilian Sign Language gestures using computer vision and live input processing.",
       },
-      pokeTeam: {
-        title: "PokeTeam",
+      lyricsClassifier: {
+        title: "LyricsClassifier",
         description:
-          "Relational database project modeling Pokémon teams and battle strategies, focused on SQL design and data relationships.",
+          "NLP pipeline for classifying song lyrics using vectorization and probabilistic models, focused on preprocessing and feature extraction.",
       },
     },
   },

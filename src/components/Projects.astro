@@ -1,7 +1,7 @@
 ---
 import type { ProjectItem } from "../data/profile";
-export interface Props { items: ProjectItem[]; viewLabel?: string; title?: string; moreOnGitHub?: string }
-const { items, viewLabel = 'View', title = 'Projects', moreOnGitHub = 'More on GitHub:' } = Astro.props as Props;
+export interface Props { items: ProjectItem[]; viewLabel?: string; demoLabel?: string; screenshotAltPrefix?: string; title?: string; moreOnGitHub?: string }
+const { items, viewLabel = 'View', demoLabel = 'Demo', screenshotAltPrefix = 'Screenshot of', title = 'Projects', moreOnGitHub = 'More on GitHub:' } = Astro.props as Props;
 ---
 <section id="projects" class="mt-20 md:mt-28">
   <h2 class="heading-section font-display text-black dark:text-white">{title}</h2>
@@ -10,8 +10,22 @@ const { items, viewLabel = 'View', title = 'Projects', moreOnGitHub = 'More on G
       <article class="card transition-transform duration-200 hover:-translate-y-0.5">
         <header class="flex items-center justify-between gap-3">
           <h3 class="text-[1.375rem] font-medium leading-tight text-black dark:text-white font-display" style="letter-spacing: -0.22px;">{p.displayName}</h3>
-          <a class="btn-primary flex-shrink-0 !py-1.5 !px-3 text-sm" href={p.url} target="_blank" rel="noreferrer">{viewLabel}</a>
+          <div class="flex flex-shrink-0 gap-2">
+            {p.demo && (
+              <a class="btn-outline !py-1.5 !px-3 text-sm" href={p.demo} target="_blank" rel="noreferrer">{demoLabel}</a>
+            )}
+            <a class="btn-primary !py-1.5 !px-3 text-sm" href={p.url} target="_blank" rel="noreferrer">{viewLabel}</a>
+          </div>
         </header>
+        {p.screenshot && (
+          <img
+            class="mt-4 aspect-video w-full rounded-sharp border border-black/[0.08] object-cover object-top dark:border-white/[0.12]"
+            src={p.screenshot}
+            alt={`${screenshotAltPrefix} ${p.displayName}`}
+            loading="lazy"
+            decoding="async"
+          />
+        )}
         {p.description && (
           <p class="body-default mt-3 text-black/85 dark:text-white/85">
             {p.description}

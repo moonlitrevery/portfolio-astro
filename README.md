@@ -1,121 +1,58 @@
-# 💼 João Vitor Bruschi — Portfolio
+# João Vitor Bruschi — Portfolio
 
-<div align="center">
+A personal portfolio site in English and Brazilian Portuguese. It is a single static page per language, built with Astro and Tailwind CSS and deployed to GitHub Pages.
 
-![Astro](https://img.shields.io/badge/Astro-4.10.0-FF5D01?style=for-the-badge&logo=astro&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.10-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+Live site: https://moonlitrevery.github.io/portfolio-astro/
 
-**A modern, responsive portfolio website showcasing projects, experience, and skills as a Data Analyst & Data Scientist**
+## Stack
 
-[🌐 Live Demo](https://bit.ly/mlrvportifolio) • [📧 Contact](mailto:joao.bruschi@outlook.com.br) • [💼 LinkedIn](https://www.linkedin.com/in/joaobruschi/)
+- [Astro](https://astro.build/) 4, static output
+- [Tailwind CSS](https://tailwindcss.com/) 3, with class-based dark mode
+- TypeScript for site data and translations
+- [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) for the sitemap
 
-</div>
+## Structure
 
----
+```
+public/                    Static files: CV, profile photo, icons, Open Graph images
+src/
+  pages/
+    index.astro            English home page (/)
+    pt/index.astro         Portuguese home page (/pt/)
+    robots.txt.ts          Generates robots.txt with the sitemap URL
+  layouts/BaseLayout.astro Shared <head> (meta, Open Graph, hreflang), header and footer
+  components/              Page sections (Experience, Education, Certifications, Projects, ...)
+  i18n/
+    en.ts                  English copy; its shape defines the Translations type
+    pt.ts                  Portuguese copy; must satisfy Translations
+    index.ts               Language helpers
+  data/profile.ts          Section IDs and order, project repos, credential URLs
+  styles/global.css        Global styles and component classes
+astro.config.mjs           Integrations, plus `base` and `site` read from env
+.github/workflows/deploy.yml
+```
 
-## ✨ Features
+Text lives in `src/i18n/`. Section order, links and other language-independent data live in `src/data/profile.ts`, keyed by the same IDs.
 
-- 🌓 **Dark/Light Mode** - Toggle between themes with persistent preference
-- 🌍 **Multi-language Support** - Full bilingual support (Portuguese BR / English)
-- 📱 **Fully Responsive** - Optimized for all devices (mobile, tablet, desktop)
-- ⚡ **Fast & Lightweight** - Built with Astro for optimal performance
-- 🎨 **Modern UI/UX** - Clean, professional design with smooth animations
-- 🔍 **SEO Optimized** - Meta tags and semantic HTML for better discoverability
-- ♿ **Accessible** - WCAG compliant with proper ARIA labels
+## Running locally
 
-## 🚀 Tech Stack
-
-- **[Astro](https://astro.build/)** - Static site generator for fast, content-focused websites
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe JavaScript
-- **HTML5 & CSS3** - Modern web standards
-
-## 📋 Prerequisites
-
-- Node.js 18+ and npm (or yarn/pnpm)
-- Git
-
-## 🛠️ Installation & Setup
-
-### 1. Clone the repository
+Requires Node.js 20 (the version the deploy workflow uses).
 
 ```bash
-git clone https://github.com/moonlitrevery/portfolio-astro.git
-cd portfolio-astro
+npm ci
+npm run dev       # http://localhost:4321/
+npm run build     # output in dist/
+npm run preview   # serve dist/
 ```
 
-### 2. Install dependencies
+`base` and `site` come from the `BASE_URL` and `SITE_URL` environment variables. Without them, the build uses `/` as the base, and it leaves out the absolute-URL tags (canonical, hreflang, `og:url`, `og:image`) and the sitemap. To reproduce the production build:
 
 ```bash
-npm install
+BASE_URL=/portfolio-astro/ SITE_URL=https://moonlitrevery.github.io/portfolio-astro/ npm run build
 ```
 
-### 3. Start development server
+## Deployment
 
-```bash
-npm run dev
-```
+`.github/workflows/deploy.yml` deploys to GitHub Pages on every push to `main`, and can also be run manually. It installs dependencies with `npm ci` on Node 20 and builds with `BASE_URL=/<repo>/` and `SITE_URL=https://<owner>.github.io/<repo>/`. It then uploads `dist/` and publishes it with `actions/deploy-pages`.
 
-The site will be available at `http://localhost:4321`
-
-### 4. Build for production
-
-```bash
-npm run build
-```
-
-### 5. Preview production build
-
-```bash
-npm run preview
-```
-
-## 📁 Project Structure
-
-```
-portfolio-astro/
-├── public/
-│   ├── cv.pdf              # Resume/CV file
-│   ├── icons/              # Social media icons
-│   └── me.jpg              # Profile picture
-├── src/
-│   ├── components/         # Astro components
-│   │   ├── Certifications.astro
-│   │   ├── Education.astro
-│   │   ├── Experience.astro
-│   │   ├── LanguageSelector.astro
-│   │   ├── Projects.astro
-│   │   └── ThemeToggle.astro
-│   ├── data/
-│   │   └── profile.ts      # Profile data (experience, projects, etc.)
-│   ├── layouts/
-│   │   └── BaseLayout.astro
-│   ├── pages/
-│   │   └── index.astro     # Main page
-│   └── styles/
-│       └── global.css      # Global styles and Tailwind config
-├── astro.config.mjs        # Astro configuration
-├── tailwind.config.cjs     # Tailwind CSS configuration
-└── package.json
-```
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 👤 Author
-
-**João Vitor Bruschi**
-
-- 🌐 Website: [Portfolio](https://bit.ly/mlrvportifolio)
-- 💼 LinkedIn: [@joaobruschi](https://www.linkedin.com/in/joaobruschi/)
-- 💻 GitHub: [@moonlitrevery](https://github.com/moonlitrevery)
-- 📧 Email: joao.bruschi@outlook.com.br
-- 📷 Instagram: [@nyxvoiid](https://www.instagram.com/nyxvoiid/)
-
-## 🙏 Acknowledgments
-
-- Built with [Astro](https://astro.build/)
-- Styled with [Tailwind CSS](https://tailwindcss.com/)
-- Icons from [Heroicons](https://heroicons.com/)
+In the repository settings, the Pages source must be set to "GitHub Actions".

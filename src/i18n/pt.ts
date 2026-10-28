@@ -32,6 +32,7 @@ export const pt = {
     portraitAlt: "Retrato de João Vitor Bruschi",
     openToOpportunities: "Aberto a oportunidades",
     downloadCv: "Baixar CV",
+    cvFile: "cv-pt.pdf",
     socialGithub: "GitHub",
     socialLinkedin: "LinkedIn",
   },
@@ -187,7 +188,7 @@ export const pt = {
   },
   certifications: {
     sectionTitle: "Certificações e cursos",
-    visitProvider: "Acessar credencial",
+    viewCredential: "Ver credencial",
     items: {
       dataSciencePath: { name: "Formação em Data Science", issuer: "Alura" },
       dataAnalyticsWarehousing: {
@@ -202,12 +203,23 @@ export const pt = {
         name: "Treinamento conceitual em BI",
         issuer: "Tech6 Group",
       },
-      spaceApps2022: { name: "Space Apps 2022", issuer: "NASA" },
+    },
+  },
+  awards: {
+    sectionTitle: "Prêmios e eventos",
+    items: {
+      spaceApps2022: {
+        name: "Space Apps 2022",
+        issuer: "NASA",
+        note: "Participação",
+      },
     },
   },
   projects: {
     sectionTitle: "Projetos",
     view: "Ver",
+    demo: "Demo",
+    screenshotAlt: "Captura de tela do projeto",
     moreOnGitHub: "Mais no GitHub:",
     items: {
       churn: {
@@ -220,20 +232,15 @@ export const pt = {
         description:
           "Inteligência documental local-first para busca semântica em arquivos privados: OCR, chunking, embeddings on-device e similaridade de cosseno com sentence-transformers, sem APIs externas. Destaques: IA com privacidade (100% offline); backend FastAPI e app desktop Electron; pipeline ponta a ponta de busca semântica.",
       },
-      lyricsClassifier: {
-        title: "LyricsClassifier",
-        description:
-          "Pipeline de NLP para classificar letras com vetorização e modelos probabilísticos, com foco em pré-processamento e extração de features.",
-      },
       librasLive: {
         title: "LibrasLive",
         description:
           "Sistema em tempo real para reconhecimento de gestos em LIBRAS com visão computacional e processamento de entrada ao vivo.",
       },
-      pokeTeam: {
-        title: "PokeTeam",
+      lyricsClassifier: {
+        title: "LyricsClassifier",
         description:
-          "Projeto de banco relacional modelando times de Pokémon e estratégias de batalha, com foco em modelagem SQL e relacionamentos entre dados.",
+          "Pipeline de NLP para classificar letras com vetorização e modelos probabilísticos, com foco em pré-processamento e extração de features.",
       },
     },
   },

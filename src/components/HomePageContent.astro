@@ -5,7 +5,8 @@ import Certifications from "../components/Certifications.astro";
 import Projects from "../components/Projects.astro";
 import {
   experienceRows,
-  certificationLinks,
+  certificationRows,
+  awardRows,
   projectSources,
 } from "../data/profile";
 import type { Translations } from "../i18n";
@@ -39,9 +40,14 @@ const educationItems = t.education.entries.map((e) => ({
   details: e.details,
 }));
 
-const certificationItems = certificationLinks.map(({ id, url }) => {
+const certificationItems = certificationRows.map(({ id, url }) => {
   const c = t.certifications.items[id];
   return { name: c.name, issuer: c.issuer, url };
+});
+
+const awardItems = awardRows.map(({ id, url }) => {
+  const a = t.awards.items[id];
+  return { name: a.name, issuer: a.issuer, note: a.note, url };
 });
 
 const projectItems = projectSources.map((p) => {
@@ -52,6 +58,8 @@ const projectItems = projectSources.map((p) => {
     url: p.url,
     repo: p.repo,
     tech: p.tech,
+    demo: p.demo,
+    screenshot: p.screenshot ? `${base}${p.screenshot}` : undefined,
   };
 });
 ---
@@ -75,7 +83,7 @@ const projectItems = projectSources.map((p) => {
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-3.5 w-3.5 text-lavender" fill="currentColor" aria-hidden="true"><path d="M12 2l3 7h7l-5.5 4.2L18 21l-6-3.8L6 21l1.5-7.8L2 9h7z"/></svg>
           {t.hero.openToOpportunities}
         </span>
-        <a href={`${base}cv.pdf`} class="btn-primary" target="_blank" rel="noreferrer">
+        <a href={`${base}${t.hero.cvFile}`} class="btn-primary" target="_blank" rel="noreferrer">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zm1 7H8V7h7v2z"/></svg>
           {t.hero.downloadCv}
         </a>
@@ -177,13 +185,16 @@ const projectItems = projectSources.map((p) => {
     <p class="section-label mb-12 text-white/45">{t.researchBand}</p>
     <Experience items={experienceItems} title={t.experience.sectionTitle} earlierLabel={t.experience.earlierLabel} variant="dark" />
     <Education items={educationItems} title={t.education.sectionTitle} variant="dark" />
-    <Certifications items={certificationItems} visitLabel={t.certifications.visitProvider} title={t.certifications.sectionTitle} variant="dark" />
+    <Certifications items={certificationItems} visitLabel={t.certifications.viewCredential} title={t.certifications.sectionTitle} variant="dark" />
+    <Certifications id="awards" items={awardItems} visitLabel={t.certifications.viewCredential} title={t.awards.sectionTitle} variant="dark" />
   </div>
 </div>
 
 <Projects
   items={projectItems}
   viewLabel={t.projects.view}
+  demoLabel={t.projects.demo}
+  screenshotAltPrefix={t.projects.screenshotAlt}
   title={t.projects.sectionTitle}
   moreOnGitHub={t.projects.moreOnGitHub}
 />

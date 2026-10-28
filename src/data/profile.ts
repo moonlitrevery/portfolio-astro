@@ -10,15 +10,15 @@ export type CertificationId =
   | "dataSciencePath"
   | "dataAnalyticsWarehousing"
   | "advancedPowerBi"
-  | "conceptualBi"
-  | "spaceApps2022";
+  | "conceptualBi";
+
+export type AwardId = "spaceApps2022";
 
 export type ProjectId =
   | "churn"
   | "dodocLens"
-  | "lyricsClassifier"
   | "librasLive"
-  | "pokeTeam";
+  | "lyricsClassifier";
 
 export type ExperienceItem = {
   title: string;
@@ -40,6 +40,8 @@ export type CertificationItem = {
   name: string;
   issuer?: string;
   date?: string;
+  /** Short qualifier shown under the issuer, e.g. "Participation". */
+  note?: string;
   url?: string;
 };
 
@@ -50,6 +52,8 @@ export type ProjectItem = {
   tech?: string[];
   url: string;
   demo?: string;
+  /** Image URL (already prefixed with BASE_URL), shown above the description. */
+  screenshot?: string;
 };
 
 export const experienceRows: { id: ExperienceRowId; company: string }[] = [
@@ -60,21 +64,16 @@ export const experienceRows: { id: ExperienceRowId; company: string }[] = [
   { id: "paschoalotto", company: "Paschoalotto" },
 ];
 
-export const certificationLinks: { id: CertificationId; url: string }[] = [
-  {
-    id: "dataSciencePath",
-    url: "https://www.alura.com.br/formacao-data-science",
-  },
-  {
-    id: "dataAnalyticsWarehousing",
-    url: "https://customer-academy.databricks.com/",
-  },
-  { id: "advancedPowerBi", url: "https://tech6group.com/" },
-  { id: "conceptualBi", url: "https://tech6group.com/" },
-  {
-    id: "spaceApps2022",
-    url: "https://www.spaceappschallenge.org/",
-  },
+/** `url` must be the credential's verification page, never the provider's home page; omit it when there is none. */
+export const certificationRows: { id: CertificationId; url?: string }[] = [
+  { id: "dataSciencePath" },
+  { id: "dataAnalyticsWarehousing" },
+  { id: "advancedPowerBi" },
+  { id: "conceptualBi" },
+];
+
+export const awardRows: { id: AwardId; url?: string }[] = [
+  { id: "spaceApps2022" },
 ];
 
 export const projectSources: {
@@ -82,6 +81,9 @@ export const projectSources: {
   url: string;
   repo?: string;
   tech?: string[];
+  demo?: string;
+  /** Path relative to `public/`, e.g. "projects/dodoclens.png". */
+  screenshot?: string;
 }[] = [
   {
     id: "churn",
@@ -103,21 +105,15 @@ export const projectSources: {
     tech: ["Python", "FastAPI", "NLP", "Embeddings", "Electron", "MLOps"],
   },
   {
-    id: "lyricsClassifier",
-    repo: "moonlitrevery/LyricsClassifier",
-    url: "https://github.com/moonlitrevery/LyricsClassifier",
-    tech: ["Python", "NLP", "Machine Learning"],
-  },
-  {
     id: "librasLive",
     repo: "moonlitrevery/LibrasLive",
     url: "https://github.com/moonlitrevery/LibrasLive",
     tech: ["Computer Vision", "Python", "Real-time"],
   },
   {
-    id: "pokeTeam",
-    repo: "moonlitrevery/PokeTeam",
-    url: "https://github.com/moonlitrevery/PokeTeam",
-    tech: ["SQL", "Database Design"],
+    id: "lyricsClassifier",
+    repo: "moonlitrevery/LyricsClassifier",
+    url: "https://github.com/moonlitrevery/LyricsClassifier",
+    tech: ["Python", "NLP", "Machine Learning"],
   },
 ];
