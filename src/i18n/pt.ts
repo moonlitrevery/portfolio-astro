@@ -9,6 +9,8 @@ export const pt = {
     ariaMenu: "Abrir ou fechar menu",
     ariaTheme: "Alternar tema",
     ariaLang: "Alternar idioma",
+    ogImageAlt:
+      "João Vitor Bruschi — Engenheiro de Machine Learning | Profissional de Dados Full-Stack",
   },
   nav: {
     about: "Sobre",

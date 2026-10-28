@@ -7,6 +7,8 @@ export const en = {
     ariaMenu: "Toggle menu",
     ariaTheme: "Toggle theme",
     ariaLang: "Toggle language",
+    ogImageAlt:
+      "João Vitor Bruschi — Machine Learning Engineer | Full-Stack Data Professional",
   },
   nav: {
     about: "About",
