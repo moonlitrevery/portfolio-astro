@@ -2,9 +2,9 @@ import type { Translations } from "./en";
 
 export const pt = {
   layout: {
-    metaTitle: "Portfólio — João Vitor Bruschi",
+    metaTitle: "João Vitor Bruschi — Engenheiro de Machine Learning",
     metaDescription:
-      "Analista de Dados em transição para Engenharia de Machine Learning — ML em produção, pipelines, FastAPI, MLOps.",
+      "Engenheiro de Machine Learning e profissional de dados full-stack: análise de dados e BI (Power BI), engenharia de dados, ciência de dados e ML em produção com Python, FastAPI e MLOps.",
     ariaHome: "Início",
     ariaMenu: "Abrir ou fechar menu",
     ariaTheme: "Alternar tema",
@@ -26,7 +26,7 @@ export const pt = {
     greeting: "Olá, eu sou",
     nameDisplay: "João Vitor Bruschi",
     subtitle:
-      "Analista de Dados → Engenharia de ML · Sistemas de machine learning em produção · Ciência da Computação @ UNISAGRADO",
+      "Engenheiro de Machine Learning | Profissional de Dados Full-Stack · Engenharia de Dados · BI (Power BI) · Python · Ciência da Computação @ UNISAGRADO",
     portraitAlt: "Retrato de João Vitor Bruschi",
     openToOpportunities: "Aberto a oportunidades",
     downloadCv: "Baixar CV",
@@ -37,8 +37,8 @@ export const pt = {
     title: "Sobre",
     eyebrow: "Trajetória",
     paragraphs: [
-      "Sou o João, Analista de Dados em transição para Engenharia de Machine Learning.",
-      "Construo sistemas de dados que vão além da análise: pipelines escaláveis, APIs e ML em produção. Minha experiência em BI e analytics sustenta fluxos ponta a ponta, da preparação dos dados ao deploy dos modelos e ao monitoramento.",
+      "Sou o João, Engenheiro de Machine Learning e profissional de dados full-stack. Já atuei em todo o ciclo de vida dos dados: analytics e BI, engenharia de dados e ML em produção.",
+      "Na prática, isso significou trabalho de Analista de Dados (dashboards em Power BI, DAX, relatórios de KPI), de Engenheiro de Dados (pipelines em Python e SQL, ETL, AWS) e de Cientista de Dados (feature engineering, treino e avaliação de modelos), sempre voltado a sistemas que rodam em produção.",
       "Hoje foco em sistemas de ML no mundo real com práticas de MLOps: experiment tracking, reprodutibilidade e monitoramento de data drift.",
     ],
     stackEyebrow: "Ferramentas",
@@ -56,7 +56,7 @@ export const pt = {
         items: ["Python", "SQL", "C/C++", "Git", "Linux"],
       },
       {
-        label: "Machine learning e dados",
+        label: "Ciência de dados e machine learning",
         items: [
           "scikit-learn",
           "PyTorch",
@@ -69,11 +69,11 @@ export const pt = {
         ],
       },
       {
-        label: "MLOps e engenharia",
-        items: ["FastAPI", "MLflow", "REST APIs", "Data pipelines", "Monitoramento"],
+        label: "Engenharia de dados e MLOps",
+        items: ["FastAPI", "MLflow", "REST APIs", "Data pipelines", "AWS", "Docker", "Monitoramento"],
       },
       {
-        label: "Analytics e BI",
+        label: "Análise de dados e BI",
         items: ["Power BI", "DAX", "Data modeling", "ETL", "Excel"],
       },
     ],

@@ -1,8 +1,8 @@
 export const en = {
   layout: {
-    metaTitle: "Portfolio — João Vitor Bruschi",
+    metaTitle: "João Vitor Bruschi — Machine Learning Engineer",
     metaDescription:
-      "Data Analyst transitioning into Machine Learning Engineering — production ML, pipelines, FastAPI, MLOps.",
+      "Machine Learning Engineer and full-stack data professional: data analysis and BI (Power BI), data engineering, data science, and production ML with Python, FastAPI, and MLOps.",
     ariaHome: "Home",
     ariaMenu: "Toggle menu",
     ariaTheme: "Toggle theme",
@@ -24,7 +24,7 @@ export const en = {
     greeting: "Hello, I am",
     nameDisplay: "João Vitor Bruschi",
     subtitle:
-      "Data Analyst → Machine Learning Engineer · Building production-ready ML systems · Computer Science @ UNISAGRADO",
+      "Machine Learning Engineer | Full-Stack Data Professional · Data Engineering · BI (Power BI) · Python · Computer Science @ UNISAGRADO",
     portraitAlt: "Portrait of João Vitor Bruschi",
     openToOpportunities: "Open to opportunities",
     downloadCv: "Download CV",
@@ -35,8 +35,8 @@ export const en = {
     title: "About",
     eyebrow: "Background",
     paragraphs: [
-      "I'm João, a Data Analyst transitioning into Machine Learning Engineering.",
-      "I build data systems that go beyond analysis, focusing on scalable pipelines, APIs, and production-ready ML solutions. My background in BI and analytics supports my work designing end-to-end workflows: from data processing to model deployment and monitoring.",
+      "I'm João, a Machine Learning Engineer and full-stack data professional. I've worked across the full data lifecycle: analytics and BI, data engineering, and ML in production.",
+      "In practice, that has meant Data Analyst work (Power BI dashboards, DAX, KPI reporting), Data Engineer work (Python and SQL pipelines, ETL, AWS), and Data Scientist work (feature engineering, model training and evaluation), all aimed at systems that run in production.",
       "Currently, I'm focused on developing real-world ML systems with MLOps practices, including experiment tracking, reproducibility, and data drift awareness.",
     ],
     stackEyebrow: "Toolkit",
@@ -54,7 +54,7 @@ export const en = {
         items: ["Python", "SQL", "C/C++", "Git", "Linux"],
       },
       {
-        label: "Machine Learning & Data",
+        label: "Data Science & Machine Learning",
         items: [
           "scikit-learn",
           "PyTorch",
@@ -67,11 +67,11 @@ export const en = {
         ],
       },
       {
-        label: "MLOps & Engineering",
-        items: ["FastAPI", "MLflow", "REST APIs", "Data Pipelines", "Monitoring"],
+        label: "Data Engineering & MLOps",
+        items: ["FastAPI", "MLflow", "REST APIs", "Data Pipelines", "AWS", "Docker", "Monitoring"],
       },
       {
-        label: "Analytics & BI",
+        label: "Data Analysis & BI",
         items: ["Power BI", "DAX", "Data Modeling", "ETL", "Excel"],
       },
     ],
