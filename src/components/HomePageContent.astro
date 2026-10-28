@@ -26,6 +26,7 @@ const experienceItems = experienceRows.map(({ id, company }) => {
   return {
     title: role.title,
     period: role.period,
+    progression: "progression" in role ? role.progression : undefined,
     company,
     bullets: [...role.bullets],
   };

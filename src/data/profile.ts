@@ -4,8 +4,7 @@ export type ExperienceRowId =
   | "sicrediApprentice"
   | "sicrediStrategic"
   | "sicrediBi"
-  | "coteFacilJunior"
-  | "coteFacilMl";
+  | "coteFacil";
 
 export type CertificationId =
   | "dataSciencePath"
@@ -25,6 +24,8 @@ export type ExperienceItem = {
   title: string;
   company: string;
   period?: string;
+  /** Role changes within the same company, e.g. "A (Apr 2026–Jun 2026) → B (Jun 2026–Aug 2026)". */
+  progression?: string;
   bullets: string[];
 };
 
@@ -52,8 +53,7 @@ export type ProjectItem = {
 };
 
 export const experienceRows: { id: ExperienceRowId; company: string }[] = [
-  { id: "coteFacilMl", company: "CoteFacil" },
-  { id: "coteFacilJunior", company: "CoteFacil" },
+  { id: "coteFacil", company: "CoteFacil" },
   { id: "sicrediBi", company: "Sicredi Centro Oeste Paulista" },
   { id: "sicrediStrategic", company: "Sicredi Centro Oeste Paulista" },
   { id: "sicrediApprentice", company: "Sicredi Centro Oeste Paulista" },

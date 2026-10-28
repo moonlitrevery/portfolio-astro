@@ -68,6 +68,16 @@ const isDark = variant === 'dark';
               >
                 {job.company}
               </p>
+              {job.progression && (
+                <p
+                  class:list={[
+                    'mt-1 caption',
+                    isDark ? 'text-white/60' : 'text-black/60 dark:text-white/60',
+                  ]}
+                >
+                  {job.progression}
+                </p>
+              )}
             </header>
             <ul
               class:list={[
